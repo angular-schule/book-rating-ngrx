@@ -7,8 +7,8 @@ describe('book-rating-redux App', () => {
     page = new BookRatingReduxPage();
   });
 
-  it('should display message saying app works', () => {
+  it('should display message saying Book Rating', () => {
     page.navigateTo();
-    expect(page.getParagraphText()).toEqual('app works!');
+    expect(page.getParagraphText()).toEqual('Book Rating');
   });
 });
