@@ -3,7 +3,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import { NgReduxModule, DevToolsExtension } from '@angular-redux/store';
+import { NgReduxModule, NgRedux, DevToolsExtension } from '@angular-redux/store';
+import { NgReduxRouterModule, NgReduxRouter } from '@angular-redux/router';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -12,8 +13,9 @@ import { BookComponent } from './book/book.component';
 import { CreateBookComponent } from './create-book/create-book.component';
 import { BookDetailsComponent } from './book-details/book-details.component';
 
+import { rootReducer } from './_reducers/rootReducer';
+import { IAppState } from './_reducers/types';
 import { CounterActions } from './_actions/counter.action';
-
 
 @NgModule({
   declarations: [
@@ -28,7 +30,8 @@ import { CounterActions } from './_actions/counter.action';
     FormsModule,
     HttpModule,
     AppRoutingModule,
-    NgReduxModule
+    NgReduxModule,
+    NgReduxRouterModule
   ],
   providers: [
     BookStoreService,
@@ -37,4 +40,20 @@ import { CounterActions } from './_actions/counter.action';
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+
+  constructor(
+    ngRedux: NgRedux<IAppState>,
+    ngReduxRouter: NgReduxRouter,
+    devTools: DevToolsExtension) {
+
+    ngRedux.configureStore(
+      rootReducer,
+      {} as IAppState,
+      [], // middlewares
+      devTools.isEnabled() ? [devTools.enhancer()] : []
+    );
+
+    ngReduxRouter.initialize();
+  }
+}
