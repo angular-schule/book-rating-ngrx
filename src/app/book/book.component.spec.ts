@@ -2,6 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { BookComponent } from './book.component';
 import { Book } from 'app/shared/book';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('BookComponent', () => {
   let component: BookComponent;
@@ -9,7 +10,10 @@ describe('BookComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ BookComponent ]
+      declarations: [ BookComponent ],
+      imports: [
+        RouterTestingModule
+      ]
     })
     .compileComponents();
   }));
@@ -17,22 +21,9 @@ describe('BookComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(BookComponent);
     component = fixture.componentInstance;
-    // component.book = new Book('', '', ''); // SET the @Input !
-    // fixture.detectChanges();
   });
 
-  it('should forward calls to book.rateUp (stubs)', () => {
-
-    let bookWasRatedUp = false;
-    component.book = <any> {
-      rateUp: () => { bookWasRatedUp = true; }
-    };
-
-    component.rateUp();
-    expect(bookWasRatedUp).toBe(true);
-  });
-
-  it('should forward calls to book.rateDown (mocks)', () => {
+  it('should forward calls to book.rateDown', () => {
 
     const bookMock = new Book('', '', '');
     spyOn(bookMock, 'rateDown').and.callThrough();
