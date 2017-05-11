@@ -17,6 +17,9 @@ export function counterReducer(
     case CounterActions.INCREMENT_COUNTER:
       return state.set('current', state.current + 1);
 
+    case CounterActions.DECREMENT_COUNTER:
+      return state.set('current', state.current - 1);
+
   default:
     return state;
   }

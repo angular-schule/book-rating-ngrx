@@ -16,6 +16,8 @@ import { BookDetailsComponent } from './book-details/book-details.component';
 import { rootReducer } from './_reducers/rootReducer';
 import { IAppState } from './_reducers/types';
 import { CounterActions } from './_actions/counter.action';
+import { CounterComponent } from './counter/counter.component';
+import { CounterPresentationComponent } from './counter-presentation/counter-presentation.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,9 @@ import { CounterActions } from './_actions/counter.action';
     DashboardComponent,
     BookComponent,
     CreateBookComponent,
-    BookDetailsComponent
+    BookDetailsComponent,
+    CounterComponent,
+    CounterPresentationComponent
   ],
   imports: [
     BrowserModule,

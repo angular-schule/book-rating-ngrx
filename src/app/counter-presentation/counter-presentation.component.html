@@ -1,0 +1,17 @@
+<div class="container">
+<div class="row">
+  <div class="col-md-3 col-md-offset-2">
+    <button class="btn btn-danger btn-block btn-lg" (click)="decrement.emit()">
+      <span class="glyphicon glyphicon-minus"></span>
+    </button>
+  </div>
+  <div class="col-md-2 count">
+    {{ counter.current }}
+  </div>
+  <div class="col-md-3">
+    <button class="btn btn-success btn-block btn-lg" (click)="increment.emit()">
+      <span class="glyphicon glyphicon-plus"></span>
+    </button>
+  </div>
+</div>
+</div>
