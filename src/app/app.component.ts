@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { BooksActions } from './_actions/books.action';
 
 @Component({
   selector: 'br-root',
@@ -7,4 +8,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Book Rating';
+
+  constructor(booksActions: BooksActions) {
+    booksActions.loadBooks();
+  }
+
 }

@@ -1,5 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs/Observable';
+import { select } from '@angular-redux/store';
+
+import { BooksActions } from '../_actions/books.action';
+import { Books } from '../_reducers/types';
+import { Book } from '../shared/book';
 
 @Component({
   selector: 'br-book-details',
@@ -7,13 +13,15 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./book-details.component.css']
 })
 export class BookDetailsComponent implements OnInit {
-  isbn: string;
 
-  constructor(private route: ActivatedRoute) { }
+  @select() books$: Observable<Books>;
+  book: Book;
+
+  constructor(private route: ActivatedRoute, private booksActions: BooksActions) {}
 
   ngOnInit() {
-    this.route.params.subscribe(params => {
-      this.isbn = params.isbn;
-    });
+    let isbn = this.route.snapshot.params['isbn'];
+    this.booksActions.selectBook(isbn);
+    this.books$.subscribe(books => this.book = books.selected);
   }
 }

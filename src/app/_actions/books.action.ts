@@ -9,6 +9,7 @@ export class BooksActions {
 
   static LOAD_PENDING = 'LOAD_PENDING';
   static LOAD_COMPLETED = 'LOAD_COMPLETED';
+  static BOOK_SELECTED = 'BOOK_SELECTED';
 
   constructor(private ngRedux: NgRedux<IAppState>, private bs: BookStoreService) {}
 
@@ -21,5 +22,12 @@ export class BooksActions {
         payload: books
       })
     );
+  }
+
+  selectBook(isbn: number) {
+    this.ngRedux.dispatch({
+      type: BooksActions.BOOK_SELECTED,
+      payload: isbn
+    });
   }
 }

@@ -14,16 +14,9 @@ import { Books } from '../_reducers/types';
   selector: 'br-dashboard',
   templateUrl: './dashboard.component.html'
 })
-export class DashboardComponent implements OnInit {
+export class DashboardComponent {
 
   @select() books$: Observable<Books>;
-
-  constructor(private booksActions: BooksActions) { }
-
-  ngOnInit() {
-    this.booksActions.loadBooks();
-  }
-
 
   addBookToList(book: Book) {
     //this.books.push(book);

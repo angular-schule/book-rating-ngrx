@@ -12,5 +12,6 @@ export type Counter = si.Immutable<{
 }>;
 
 export type Books = si.Immutable<{
-  books: Book[];
+  books: Book[],
+  selected: Book
 }>;

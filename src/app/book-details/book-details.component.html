@@ -1,3 +1,19 @@
 <h3>
-  Buch {{ isbn }}
+  {{ book.title }}
 </h3>
+
+<p>
+  <strong>ISBN:</strong> {{ book.isbn }}
+</p>
+<p>
+  <strong>Rating:</strong> {{ book.rating }}
+</p>
+
+<hr>
+
+<p>
+  {{ book.description }}
+</p>
+
+<hr>
+<button class="btn btn-success" routerLink="/">Zurück zum Dashboard</button>
