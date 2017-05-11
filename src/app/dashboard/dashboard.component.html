@@ -2,7 +2,7 @@
 
 <br-book
   [book]="b"
-  *ngFor="let b of books; let i = index"
+  *ngFor="let b of books; index as i"
   (rated)="reorderBooks($event)"></br-book>
 
 Anzahl der Bücher: {{ books.length }}
