@@ -1,7 +1,7 @@
 import { IAppState } from './../_reducers/types';
 import { Observable } from 'rxjs/Observable';
 import { BooksActions } from './../_actions/books.action';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { select } from '@angular-redux/store';
 
 import { BookStoreService } from './../shared/book-store.service';
@@ -11,21 +11,10 @@ import { Books } from '../_reducers/types';
 
 
 @Component({
-  selector: 'br-dashboard',
-  templateUrl: './dashboard.component.html'
+  selector: 'br-dashboard-presentation',
+  templateUrl: './dashboard-presentation.component.html'
 })
-export class DashboardComponent implements OnInit {
+export class DashboardPresentationComponent  {
 
-  @select() books$: Observable<Books>;
-
-  constructor(private booksActions: BooksActions) { }
-
-  ngOnInit() {
-    this.booksActions.loadBooks();
-  }
-
-
-  addBookToList(book: Book) {
-    //this.books.push(book);
-  }
+  @Input() books: Books;
 }

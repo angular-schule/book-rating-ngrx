@@ -9,11 +9,8 @@ import { Book } from '../shared/book';
 })
 export class BookComponent {
 
-  @Input()
-  book: Book;
-
-  @Output()
-  rated = new EventEmitter<Book>();
+  @Input() book: Book;
+  @Output() rated = new EventEmitter<Book>();
 
   rateUp() {
     this.book.rateUp();

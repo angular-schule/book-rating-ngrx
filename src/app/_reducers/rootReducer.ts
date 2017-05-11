@@ -3,8 +3,10 @@ import { routerReducer } from '@angular-redux/router';
 
 import { IAppState } from './types';
 import { counterReducer } from './counter.reducer';
+import { booksReducer } from './books.reducer';
 
 export const rootReducer = combineReducers({
   counter: counterReducer,
+  books: booksReducer,
   router: routerReducer
 } as IAppState);
