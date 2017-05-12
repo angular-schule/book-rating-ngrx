@@ -13,5 +13,6 @@ export type CounterState = si.Immutable<{
 
 export type BooksState = si.Immutable<{
   books: Book[],
+  isLoading: boolean,
   selected: Book
 }>;
