@@ -1,4 +1,4 @@
-<ng-container *ngIf="counter$ | async as counter">
+<ng-container *ngIf="counterState$ | async as counterState">
 
   <div class="container">
     <div class="row">
@@ -9,7 +9,7 @@
       </div>
       <div class="col-md-2 count">
 
-        {{ counter.current }}
+        {{ counterState.current }}
 
       </div>
       <div class="col-md-3">

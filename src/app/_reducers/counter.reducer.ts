@@ -2,15 +2,15 @@ import { Action } from 'redux';
 import * as si from 'seamless-immutable';
 
 import { CounterActions } from '../_actions/counter.action';
-import { Counter } from './types';
+import { CounterState } from './types';
 
-const INITIAL_COUNTER_STATE: Counter = si.from({
+const INITIAL_COUNTER_STATE: CounterState = si.from({
   current: 0
 });
 
 export function counterReducer(
-  state: Counter = INITIAL_COUNTER_STATE, action: Action
-): Counter {
+  state: CounterState = INITIAL_COUNTER_STATE, action: Action
+): CounterState {
 
   switch (action.type) {
 

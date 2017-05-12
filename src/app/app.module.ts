@@ -8,7 +8,6 @@ import { NgReduxRouterModule, NgReduxRouter } from '@angular-redux/router';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { DashboardPresentationComponent } from './dashboard-presentation/dashboard-presentation.component';
 import { BookComponent } from './book/book.component';
 import { CreateBookComponent } from './create-book/create-book.component';
 import { BookDetailsComponent } from './book-details/book-details.component';
@@ -24,7 +23,6 @@ import { CounterComponent } from './counter/counter.component';
   declarations: [
     AppComponent,
     DashboardComponent,
-    DashboardPresentationComponent,
     BookComponent,
     CreateBookComponent,
     BookDetailsComponent,

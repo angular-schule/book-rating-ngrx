@@ -2,16 +2,16 @@ import * as si from 'seamless-immutable';
 import { Book } from '../shared/book';
 
 export interface IAppState {
-  counter?: Counter;
-  books?: Books
+  counterState?: CounterState;
+  booksState?: BooksState;
   // TODO: mehr reducer, mehr actions
 };
 
-export type Counter = si.Immutable<{
+export type CounterState = si.Immutable<{
   current: number;
 }>;
 
-export type Books = si.Immutable<{
+export type BooksState = si.Immutable<{
   books: Book[],
   selected: Book
 }>;

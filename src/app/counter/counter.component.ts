@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { select } from '@angular-redux/store';
 
 import { CounterActions } from '../_actions/counter.action';
-import { Counter } from 'app/_reducers/types';
+import { CounterState } from 'app/_reducers/types';
 
 @Component({
   selector: 'br-counter',
@@ -13,7 +13,7 @@ import { Counter } from 'app/_reducers/types';
 export class CounterComponent {
 
   @select()
-  counter$: Observable<Counter>;
+  counterState$: Observable<CounterState>;
 
   constructor(public counterActions: CounterActions) {}
 

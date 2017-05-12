@@ -7,7 +7,7 @@ import { select } from '@angular-redux/store';
 import { BookStoreService } from './../shared/book-store.service';
 import { BookComponent } from './../book/book.component';
 import { Book } from '../shared/book';
-import { Books } from '../_reducers/types';
+import { BooksState } from '../_reducers/types';
 
 
 @Component({
@@ -16,9 +16,10 @@ import { Books } from '../_reducers/types';
 })
 export class DashboardComponent {
 
-  @select() books$: Observable<Books>;
+  @select() booksState$: Observable<BooksState>;
 
   addBookToList(book: Book) {
-    //this.books.push(book);
+    // TODO: more actions!
+    // this.books.push(book);
   }
 }

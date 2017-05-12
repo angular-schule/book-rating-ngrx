@@ -6,7 +6,7 @@ import { counterReducer } from './counter.reducer';
 import { booksReducer } from './books.reducer';
 
 export const rootReducer = combineReducers({
-  counter: counterReducer,
-  books: booksReducer,
+  counterState: counterReducer,
+  booksState: booksReducer,
   router: routerReducer
 } as IAppState);
