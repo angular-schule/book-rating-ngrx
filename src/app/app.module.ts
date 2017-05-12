@@ -19,7 +19,6 @@ import { IAppState } from './_reducers/types';
 import { CounterActions } from './_actions/counter.action';
 import { BooksActions } from './_actions/books.action';
 import { CounterComponent } from './counter/counter.component';
-import { CounterPresentationComponent } from './counter-presentation/counter-presentation.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +29,6 @@ import { CounterPresentationComponent } from './counter-presentation/counter-pre
     CreateBookComponent,
     BookDetailsComponent,
     CounterComponent,
-    CounterPresentationComponent
   ],
   imports: [
     BrowserModule,
