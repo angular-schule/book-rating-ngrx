@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output,ViewChild } from '@angular/core';
+import { Component, EventEmitter, Output, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 
 import { Book } from 'app/shared/book';

@@ -1,7 +1,7 @@
 import { TestBed, inject } from '@angular/core/testing';
 import { Http } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/observable/of'
+import 'rxjs/add/observable/of';
 
 import { BookStoreService } from './book-store.service';
 
