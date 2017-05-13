@@ -5,7 +5,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve -o",
-    "build": "ng build",
+    "build": "ng build -prod && cp dist/index.html dist/404.html && echo book-rating-redux.angular.schule > dist/CNAME",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
