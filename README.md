@@ -1,5 +1,9 @@
 # BookRatingRedux
 
+Demo for our Angular with Redux talk:
+* Demo: https://book-rating-redux.angular.schule
+* Slides: [Google Docs](https://docs.google.com/presentation/d/15baFhy7Bm-UYXpj6q1qz5PyWb70-qwWXPdpYJtamnfY/)
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.0.2.
 
 ## Development server
