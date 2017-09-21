@@ -1,19 +1,20 @@
-<div class="well">
-  <div class="thumbnail pull-right">
-    <img src="//ng-buch.de/avatar/{{book.rating}}">
+<div class="card mb-4">
+  <div class="card-body bg-light">
+    <div class="img-thumbnail float-right">
+      <img src="//ng-buch.de/avatar/{{book.rating}}">
+    </div>
+
+    <h2>{{ book.title }}
+      <small>Stars {{ book.rating }}</small>
+    </h2>
+    <p>{{ book.description }}</p>
+
+    <button (click)="rateUp()"
+      class="btn btn-secondary fa fa-thumbs-up"></button>
+
+    <button (click)="rateDown()"
+      class="btn btn-secondary fa fa-thumbs-down"></button>
+
+    <a [routerLink]="['/book', book.isbn]" class="btn btn-secondary">Details</a>
   </div>
-
-  <h2>{{ book.title }}
-    <small>Stars {{ book.rating }}</small>
-  </h2>
-  <p>{{ book.description }}</p>
-
-  <button (click)="rateUp()"
-    class="btn btn-default glyphicon glyphicon-thumbs-up"></button>
-
-  <button (click)="rateDown()"
-    class="btn btn-default glyphicon glyphicon-thumbs-down"></button>
-
-  <a [routerLink]="['/book', book.isbn]"  class="btn btn-info">Details</a>
-
 </div>

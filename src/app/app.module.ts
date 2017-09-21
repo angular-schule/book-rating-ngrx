@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
 import { NgReduxModule, NgRedux, DevToolsExtension } from '@angular-redux/store';
 import { NgReduxRouterModule, NgReduxRouter } from '@angular-redux/router';
 
@@ -31,7 +31,7 @@ import { CounterComponent } from './counter/counter.component';
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule,
+    HttpClientModule,
     AppRoutingModule,
     NgReduxModule,
     NgReduxRouterModule
@@ -53,8 +53,8 @@ export class AppModule {
 
     ngRedux.configureStore(
       rootReducer,
-      {} as IAppState,
-      [], // middlewares
+      {},
+      [],
       devTools.isEnabled() ? [devTools.enhancer()] : []
     );
 

@@ -12,5 +12,4 @@ export class AppComponent {
   constructor(booksActions: BooksActions) {
     booksActions.loadBooks();
   }
-
 }

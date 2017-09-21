@@ -1,10 +1,10 @@
 # BookRatingRedux
 
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.4.1.
+
 Demo for our Angular with Redux talk:
 * Demo: https://book-rating-redux.angular.schule
 * Slides: [Google Docs](https://docs.google.com/presentation/d/15baFhy7Bm-UYXpj6q1qz5PyWb70-qwWXPdpYJtamnfY/)
-
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.0.2.
 
 ## Development server
 
@@ -12,7 +12,7 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app w
 
 ## Code scaffolding
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|module`.
+Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
 ## Build
 
