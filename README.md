@@ -4,7 +4,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 Demo for our Angular with Redux talk:
 * Demo: https://book-rating-redux.angular.schule
-* Slides: [Google Docs](https://docs.google.com/presentation/d/15baFhy7Bm-UYXpj6q1qz5PyWb70-qwWXPdpYJtamnfY/)
+* Slides: [Google Docs](https://docs.google.com/presentation/d/1R_P0v2iIIu_Koi9sG5iogWm7VUN0kzTWgVeoSfCRo3w/)
 
 ## Development server
 
