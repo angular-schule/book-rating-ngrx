@@ -1,11 +1,15 @@
 <br-create-book (bookCreated)="addBookToList($event)"></br-create-book>
 
-<ng-container *ngIf="booksState$ | async as booksState">
+<div *ngIf="booksIsLoading$ | async">
+  Loading Books...
+</div>
+
+<ng-container *ngIf="books$ | async as books">
 
   <br-book
     [book]="b"
-    *ngFor="let b of booksState.books"></br-book>
+    *ngFor="let b of books"></br-book>
 
-  Anzahl der Bücher: {{ booksState.books.length }}
+  Anzahl der Bücher: {{ books.length }}
 
 </ng-container>

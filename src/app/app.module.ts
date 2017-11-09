@@ -8,6 +8,8 @@ import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 import { environment } from '../environments/environment';
+import { BooksEffectsService } from './_effects/books-effects.service';
+import { metaReducers, reducers } from './_reducers/';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BookDetailsComponent } from './book-details/book-details.component';
@@ -66,10 +68,11 @@ import { CustomRouterStateSerializer } from './shared/utils';
      *
      * See: https://github.com/ngrx/platform/blob/master/docs/effects/api.md#forroot
      */
-    EffectsModule.forRoot([])
+    EffectsModule.forRoot([BooksEffectsService])
   ],
   providers: [
     BookStoreService,
+    BooksEffectsService,
 
     /**
      * The `RouterStateSnapshot` provided by the `Router` is a large complex structure.
@@ -80,9 +83,4 @@ import { CustomRouterStateSerializer } from './shared/utils';
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule {
-
-  // constructor(booksActions: BooksActions) {
-  //   booksActions.loadBooks();
-  // }
-}
+export class AppModule { }

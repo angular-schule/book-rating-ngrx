@@ -1,26 +1,31 @@
-import { Action } from 'redux';
-import * as si from 'seamless-immutable';
+import * as counterActions from '../_actions/counter.actions';
 
-import { CounterActions } from '../_actions/counter.action';
-import { CounterState } from './types';
+export interface CounterState {
+  current: number;
+}
 
-const INITIAL_COUNTER_STATE: CounterState = si.from({
+const INITIAL_COUNTER_STATE: CounterState = {
   current: 0
-});
+};
 
 export function counterReducer(
-  state: CounterState = INITIAL_COUNTER_STATE, action: Action
+  state: CounterState = INITIAL_COUNTER_STATE, action: counterActions.Actions
 ): CounterState {
 
   switch (action.type) {
 
-    case CounterActions.INCREMENT_COUNTER:
-      return state.set('current', state.current + 1);
+    case counterActions.INCREMENT_COUNTER:
+      return {
+        current: state.current + 1
+      };
 
-    case CounterActions.DECREMENT_COUNTER:
-      return state.set('current', state.current - 1);
+    case counterActions.DECREMENT_COUNTER:
+      return {
+        current: state.current - 1
+      };
 
-  default:
-    return state;
+    default: {
+      return state;
+    }
   }
 }

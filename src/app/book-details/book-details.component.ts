@@ -1,26 +1,26 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
-import { select } from '@angular-redux/store';
 
-import { BooksActions } from '../_actions/books.action';
-import { BooksState } from '../_reducers/types';
+import * as booksActions from '../_actions/books.actions';
+import * as reducers from '../_reducers';
+
 import { Book } from '../shared/book';
 
 @Component({
   selector: 'br-book-details',
   templateUrl: './book-details.component.html'
 })
-export class BookDetailsComponent implements OnInit {
+export class BookDetailsComponent {
 
-  @select() booksState$: Observable<BooksState>;
-  book: Book;
+  book$: Observable<Book>;
 
-  constructor(private route: ActivatedRoute, private booksActions: BooksActions) {}
+  constructor(private route: ActivatedRoute, private store: Store<reducers.State>) {
 
-  ngOnInit() {
+    this.book$ = store.select(reducers.getBookSelected);
+
     const isbn = this.route.snapshot.params.isbn;
-    this.booksActions.selectBook(isbn);
-    this.booksState$.subscribe(books => this.book = books.selected);
+    this.store.dispatch(new booksActions.BookSelected(isbn));
   }
 }

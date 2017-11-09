@@ -1,36 +1,42 @@
-import { Action } from 'redux';
-import * as si from 'seamless-immutable';
+import * as booksActions from '../_actions/books.actions';
+import { Book } from '../shared/book';
 
-import { Book } from './../shared/book';
-import { BooksActions } from '../_actions/books.action';
-import { BooksState } from './types';
-import { IActionPayload } from '../_actions/actionPayload';
+export interface BooksState {
+  books: Book[];
+  isLoading: boolean;
+  selected: Book;
+}
 
-const INITIAL_BOOKS_STATE: BooksState = si.from({
+const INITIAL_BOOKS_STATE: BooksState = {
   books: [],
   isLoading: false,
   selected: new Book(null, null, null)
-});
+};
 
-
-export function booksReducer(
-  state: BooksState = INITIAL_BOOKS_STATE,
-  action: IActionPayload<BooksState>
+export function booksReducer(state: BooksState = INITIAL_BOOKS_STATE,
+  action: booksActions.Actions
 ): BooksState {
   switch (action.type) {
 
-    case BooksActions.LOAD_PENDING:
-      return state.set('isLoading', true);
+    case booksActions.LOAD_PENDING:
+      return {
+        ...state,
+        isLoading: true
+      };
 
-    case BooksActions.LOAD_COMPLETED:
-      return state
-              .set('isLoading', false)
-              .set('books', action.payload);
+    case booksActions.LOAD_COMPLETED:
+      return {
+        ...state,
+        books: action.payload,
+        isLoading: false
+      };
 
-    case BooksActions.BOOK_SELECTED:
+    case booksActions.BOOK_SELECTED:
       const foundBook = state.books.find(b => b.isbn === action.payload);
-      return foundBook ? state.set('selected', foundBook) : state;
+      return foundBook ? { ...state, selected: foundBook } : state;
 
-    default: return state;
+    default: {
+      return state;
+    }
   }
 }

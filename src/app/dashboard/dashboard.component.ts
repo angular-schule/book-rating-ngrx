@@ -1,14 +1,9 @@
-import { IAppState } from './../_reducers/types';
+import { Component } from '@angular/core';
+import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
-import { BooksActions } from './../_actions/books.action';
-import { Component, OnInit } from '@angular/core';
-import { select } from '@angular-redux/store';
 
-import { BookStoreService } from './../shared/book-store.service';
-import { BookComponent } from './../book/book.component';
+import * as reducers from '../_reducers';
 import { Book } from '../shared/book';
-import { BooksState } from '../_reducers/types';
-
 
 @Component({
   selector: 'br-dashboard',
@@ -16,7 +11,13 @@ import { BooksState } from '../_reducers/types';
 })
 export class DashboardComponent {
 
-  @select() booksState$: Observable<BooksState>;
+  books$: Observable<Book[]>;
+  booksIsLoading$: Observable<boolean>;
+
+  constructor(private store: Store<reducers.State>) {
+    this.books$ = store.select(reducers.getBooks);
+    this.booksIsLoading$ = store.select(reducers.getBooksIsLoading);
+  }
 
   addBookToList(book: Book) {
     // TODO: more actions!

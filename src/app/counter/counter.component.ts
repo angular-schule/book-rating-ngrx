@@ -1,9 +1,9 @@
-import { Observable } from 'rxjs/Observable';
 import { Component } from '@angular/core';
-import { select } from '@angular-redux/store';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs/Observable';
 
-import { CounterActions } from '../_actions/counter.action';
-import { CounterState } from 'app/_reducers/types';
+import * as counterActions from '../_actions/counter.actions';
+import * as reducers from '../_reducers';
 
 @Component({
   selector: 'br-counter',
@@ -12,9 +12,17 @@ import { CounterState } from 'app/_reducers/types';
 })
 export class CounterComponent {
 
-  @select()
-  counterState$: Observable<CounterState>;
+  current$: Observable<number>;
 
-  constructor(public counterActions: CounterActions) {}
+  constructor(private store: Store<reducers.State>) {
+    this.current$ = store.select(reducers.getCurrent);
+  }
 
+  increment() {
+    this.store.dispatch(new counterActions.IncrementCounter());
+  }
+
+  decrement() {
+    this.store.dispatch(new counterActions.DecrementCounter());
+  }
 }

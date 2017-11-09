@@ -1,19 +1,24 @@
-<h3>
-  {{ book.title }}
-</h3>
+<ng-container *ngIf="book$ | async as book">
 
-<p>
-  <strong>ISBN:</strong> {{ book.isbn }}
-</p>
-<p>
-  <strong>Rating:</strong> {{ book.rating }}
-</p>
+  <h3>
+    {{ book.title }}
+  </h3>
 
-<hr>
+  <p>
+    <strong>ISBN:</strong> {{ book.isbn }}
+  </p>
+  <p>
+    <strong>Rating:</strong> {{ book.rating }}
+  </p>
 
-<p>
-  {{ book.description }}
-</p>
+  <hr>
 
-<hr>
-<button class="btn btn-success" routerLink="/">Zurück zum Dashboard</button>
+  <p>
+    {{ book.description }}
+  </p>
+
+  <hr>
+  <button class="btn btn-success" routerLink="/">Zurück zum Dashboard</button>
+
+</ng-container>
+
