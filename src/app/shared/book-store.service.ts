@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import 'rxjs/add/operator/map';
 
 import { Book } from './book';
+import { delay } from 'rxjs/operators';
 
 @Injectable()
 export class BookStoreService {
@@ -13,10 +14,14 @@ export class BookStoreService {
   constructor(private http: HttpClient) { }
 
   getAll(): Observable<Book[]> {
-    return this.http.get<Book[]>(`${this.api}/books`);
+    return this.http.get<Book[]>(`${this.api}/books`).pipe(
+      delay(1000)
+    );
   }
 
   getSingle(isbn: string): Observable<Book> {
-    return this.http.get<Book>(`${this.api}/book/${isbn}`);
+    return this.http.get<Book>(`${this.api}/book/${isbn}`).pipe(
+      delay(1000)
+    );
   }
 }
