@@ -10,7 +10,7 @@ export interface BooksState {
 const initialState: BooksState = {
   books: [],
   loading: false,
-  selected: new Book(null, null, null)
+  selected: null
 };
 
 export function booksReducer(state: BooksState = initialState, action: BooksActions): BooksState {

@@ -23,18 +23,6 @@ describe('BookComponent', () => {
     component = fixture.componentInstance;
   });
 
-  it('should forward calls to book.rateDown', () => {
-
-    const bookMock = new Book('', '', '');
-    spyOn(bookMock, 'rateDown').and.callThrough();
-
-    component.book = bookMock;
-    component.rateDown();
-
-    expect(bookMock.rateDown).toHaveBeenCalled();
-  });
-
-
   it('should create', () => {
     expect(component).toBeTruthy();
   });
