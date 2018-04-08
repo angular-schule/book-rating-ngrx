@@ -3,9 +3,12 @@ import { Action } from '@ngrx/store';
 import { Book } from '../../shared/book';
 
 export enum BooksActionTypes {
-  LoadBooks = '[Books] Load books',
-  LoadBooksSuccess = '[Books] Load books success',
-  LoadBooksFail = '[Books] Load books fail',
+  LoadBooks = '[Books] Load all books',
+  LoadBooksSuccess = '[Books] Load all books success',
+  LoadBooksFail = '[Books] Load all books fail',
+  LoadBook = '[Books] Load book',
+  LoadBookSuccess = '[Books] Load book success',
+  LoadBookFail = '[Books] Load book fail',
   SelectBook = '[Books] Select book'
 }
 
@@ -28,6 +31,21 @@ export class SelectBook implements Action {
   constructor(public payload: string) {}
 }
 
+export class LoadBook implements Action {
+  readonly type = BooksActionTypes.LoadBook;
+  constructor(public payload: string) {}
+}
+
+export class LoadBookSuccess implements Action {
+  readonly type = BooksActionTypes.LoadBookSuccess;
+  constructor(public payload: Book) {}
+}
+
+export class LoadBookFail implements Action {
+  readonly type = BooksActionTypes.LoadBookFail;
+  constructor(public payload: any) {}
+}
+
 /**
  * Export a type alias of all actions in this action group
  * so that reducers can easily compose action types
@@ -36,4 +54,7 @@ export type BooksActions =
   | LoadBooks
   | LoadBooksSuccess
   | LoadBooksFail
+  | LoadBook
+  | LoadBookSuccess
+  | LoadBookFail
   | SelectBook;

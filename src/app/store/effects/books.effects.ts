@@ -14,6 +14,9 @@ import * as booksActions from '../actions/books.actions';
 @Injectable()
 export class BooksEffects {
 
+  /*
+   * load book list and dispatch LoadBooksSuccess action
+   */
   @Effect()
   loadBooks$ = this.actions$.pipe(
     ofType(BooksActionTypes.LoadBooks),
@@ -23,6 +26,32 @@ export class BooksEffects {
     ))
   );
 
+  /*
+   * trigger LoadBook when SelectBook happens
+   */
+  @Effect()
+  selectBook$ = this.actions$.pipe(
+    ofType(BooksActionTypes.SelectBook),
+    map((action: booksActions.SelectBook) => action.payload),
+    map(isbn => new booksActions.LoadBook(isbn))
+  );
+
+  /*
+   * load one book by ISBN and dispatch LoadBookSuccess action
+   */
+  @Effect()
+  loadBook$ = this.actions$.pipe(
+    ofType(BooksActionTypes.LoadBook),
+    map((action: booksActions.LoadBook) => action.payload),
+    mergeMap(isbn => this.bs.getSingle(isbn).pipe(
+      map(book => new booksActions.LoadBookSuccess(book)),
+      catchError(err => of(new booksActions.LoadBookFail(err)))
+    ))
+  );
+
+  /*
+   * do console log when LoadBooksSuccess happens
+   */
   @Effect({ dispatch: false })
   loadBooksSuccess$ = this.actions$.pipe(
     ofType(BooksActionTypes.LoadBooksSuccess),

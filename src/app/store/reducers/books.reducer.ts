@@ -4,51 +4,48 @@ import { BooksActions, BooksActionTypes } from '../actions/books.actions';
 export interface BooksState {
   books: Book[];
   loading: boolean;
-  selected: Book;
+  selectedIsbn: string;
 }
 
 const initialState: BooksState = {
   books: [],
   loading: false,
-  selected: null
+  selectedIsbn: null
 };
 
 export function booksReducer(state: BooksState = initialState, action: BooksActions): BooksState {
   switch (action.type) {
 
     case BooksActionTypes.LoadBooks:
-      return {
-        ...state,
-        loading: true
-      };
+    case BooksActionTypes.LoadBook: {
+      return { ...state, loading: true };
+    }
+
+    case BooksActionTypes.LoadBooksFail:
+    case BooksActionTypes.LoadBookFail: {
+      return { ...state, loading: false };
+    }
 
     case BooksActionTypes.LoadBooksSuccess: {
       const books = action.payload;
 
-      return {
-        ...state,
-        books,
-        loading: false
-      };
+      return { ...state, books, loading: false };
     }
 
-    case BooksActionTypes.LoadBooksFail: {
-      return {
-        ...state,
-        loading: false
-      };
+    case BooksActionTypes.LoadBookSuccess: {
+      const book = action.payload;
+
+      const cleanedList = state.books.filter(b => b.isbn !== state.selectedIsbn);
+      const books = [...cleanedList, book];
+
+      return { ...state, books, loading: false };
     }
 
     case BooksActionTypes.SelectBook: {
       const selectedIsbn = action.payload;
-      const foundBook = state.books.find(b => b.isbn === selectedIsbn);
-
-      if (foundBook) {
-        return { ...state, selected: foundBook };
-      } else {
-        return state;
-      }
+      return { ...state, selectedIsbn };
     }
+
 
     default: {
       return state;

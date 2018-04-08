@@ -13,9 +13,5 @@ export class AppComponent {
   title = 'Book Rating';
 
   constructor(private store: Store<State>) {
-
-    // triggers initial load of books
-    // hint: there a lot of other ways to trigger this, too
-    this.store.dispatch(new LoadBooks());
   }
 }
