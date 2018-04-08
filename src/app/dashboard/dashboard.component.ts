@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
-import { Store } from '@ngrx/store';
+import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
 
-import * as reducers from '../_reducers';
+import { getAllBooks, getBooksLoading } from '../store/selectors/books.selectors';
+import { State } from '../store/reducers';
 import { Book } from '../shared/book';
 
 @Component({
@@ -12,11 +13,11 @@ import { Book } from '../shared/book';
 export class DashboardComponent {
 
   books$: Observable<Book[]>;
-  booksIsLoading$: Observable<boolean>;
+  loading$: Observable<boolean>;
 
-  constructor(private store: Store<reducers.State>) {
-    this.books$ = store.select(reducers.getBooks);
-    this.booksIsLoading$ = store.select(reducers.getBooksIsLoading);
+  constructor(private store: Store<State>) {
+    this.books$ = store.pipe(select(getAllBooks));
+    this.loading$ = store.pipe(select(getBooksLoading));
   }
 
   addBookToList(book: Book) {

@@ -8,8 +8,10 @@ import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 import { environment } from '../environments/environment';
-import { BooksEffectsService } from './_effects/books-effects.service';
-import { metaReducers, reducers } from './_reducers/';
+import { BooksEffects } from './store/effects/books.effects';
+import { metaReducers, reducers } from './store/reducers';
+import { CustomRouterStateSerializer } from './shared/utils';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BookDetailsComponent } from './book-details/book-details.component';
@@ -18,7 +20,6 @@ import { CounterComponent } from './counter/counter.component';
 import { CreateBookComponent } from './create-book/create-book.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { BookStoreService } from './shared/book-store.service';
-import { CustomRouterStateSerializer } from './shared/utils';
 
 @NgModule({
   declarations: [
@@ -68,11 +69,10 @@ import { CustomRouterStateSerializer } from './shared/utils';
      *
      * See: https://github.com/ngrx/platform/blob/master/docs/effects/api.md#forroot
      */
-    EffectsModule.forRoot([BooksEffectsService])
+    EffectsModule.forRoot([BooksEffects])
   ],
   providers: [
     BookStoreService,
-    BooksEffectsService,
 
     /**
      * The `RouterStateSnapshot` provided by the `Router` is a large complex structure.

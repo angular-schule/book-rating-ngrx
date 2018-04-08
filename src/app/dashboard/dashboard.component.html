@@ -1,6 +1,6 @@
 <br-create-book (bookCreated)="addBookToList($event)"></br-create-book>
 
-<div *ngIf="booksIsLoading$ | async">
+<div *ngIf="loading$ | async">
   Loading Books...
 </div>
 
