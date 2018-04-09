@@ -15,16 +15,9 @@ import * as booksActions from '../actions/books.actions';
 export class BooksEffects {
 
   /*
-   * load book list and dispatch LoadBooksSuccess action
+   * TODO: load book list and dispatch LoadBooksSuccess action
    */
-  @Effect()
-  loadBooks$ = this.actions$.pipe(
-    ofType(BooksActionTypes.LoadBooks),
-    mergeMap(() => this.bs.getAll().pipe(
-      map(books => new booksActions.LoadBooksSuccess(books)),
-      catchError(err => of(new booksActions.LoadBooksFail(err)))
-    ))
-  );
+
 
   /*
    * trigger LoadBook when SelectBook happens

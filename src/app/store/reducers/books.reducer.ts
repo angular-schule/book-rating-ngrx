@@ -16,20 +16,19 @@ const initialState: BooksState = {
 export function booksReducer(state: BooksState = initialState, action: BooksActions): BooksState {
   switch (action.type) {
 
-    case BooksActionTypes.LoadBooks:
+    // TODO: LoadBooks
+    // TODO: LoadBooksFail
+    // TODO: LoadBooksSuccess
+
+
+
+
     case BooksActionTypes.LoadBook: {
       return { ...state, loading: true };
     }
 
-    case BooksActionTypes.LoadBooksFail:
     case BooksActionTypes.LoadBookFail: {
       return { ...state, loading: false };
-    }
-
-    case BooksActionTypes.LoadBooksSuccess: {
-      const books = action.payload;
-
-      return { ...state, books, loading: false };
     }
 
     case BooksActionTypes.LoadBookSuccess: {

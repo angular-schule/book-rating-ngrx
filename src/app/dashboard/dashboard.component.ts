@@ -4,8 +4,6 @@ import { Observable } from 'rxjs/Observable';
 
 import { Book } from '../shared/book';
 import { State } from '../store/reducers';
-import { LoadBooks } from '../store/actions/books.actions';
-import { getAllBooks, getBooksLoading } from '../store/selectors/books.selectors';
 
 @Component({
   selector: 'br-dashboard',
@@ -13,20 +11,13 @@ import { getAllBooks, getBooksLoading } from '../store/selectors/books.selectors
 })
 export class DashboardComponent implements OnInit {
 
-  books$: Observable<Book[]>;
-  loading$: Observable<boolean>;
-
   constructor(private store: Store<State>) { }
 
   ngOnInit() {
-    this.books$ = this.store.pipe(select(getAllBooks));
-    this.loading$ = this.store.pipe(select(getBooksLoading));
-
-    // trigger initial book list loading
-    this.store.dispatch(new LoadBooks());
+    // TODO: Select from store
+    // TODO: Dispatch initial book list loading action
   }
 
   addBookToList(book: Book) {
-    // TODO: more actions!
   }
 }

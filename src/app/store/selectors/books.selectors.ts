@@ -18,11 +18,6 @@ export const getAllBooks = createSelector(
   state => state.books
 );
 
-export const getBooksLoading = createSelector(
-  getBooksState,
-  state => state.loading
-);
-
 export const getSelectedIsbn = createSelector(
   getBooksState,
   state => state.selectedIsbn
@@ -33,3 +28,6 @@ export const getSelectedBook = createSelector(
   getSelectedIsbn,
   (books, isbn) => books.find(b => b.isbn === isbn)
 );
+
+
+// TODO: getBooksLoading
