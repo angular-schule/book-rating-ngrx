@@ -13,6 +13,8 @@ export enum BooksActionTypes {
   AddBook = '[Books] Add book',
   AddBookSuccess = '[Books] Add book success',
   AddBookFail = '[Books] add book fail',
+  RateUp = '[Books] Rate up',
+  RateDown = '[Books] Rate down'
 }
 
 export class LoadBooks implements Action {
@@ -64,6 +66,16 @@ export class AddBookFail implements Action {
   constructor(public payload: any) {}
 }
 
+export class RateUp implements Action {
+  readonly type = BooksActionTypes.RateUp;
+  constructor(public payload: Book) {}
+}
+
+export class RateDown implements Action {
+  readonly type = BooksActionTypes.RateDown;
+  constructor(public payload: Book) {}
+}
+
 /**
  * Export a type alias of all actions in this action group
  * so that reducers can easily compose action types
@@ -78,4 +90,6 @@ export type BooksActions =
   | SelectBook
   | AddBook
   | AddBookSuccess
-  | AddBookFail;
+  | AddBookFail
+  | RateUp
+  | RateDown;

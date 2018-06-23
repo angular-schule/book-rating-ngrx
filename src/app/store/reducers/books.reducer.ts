@@ -13,6 +13,9 @@ const initialState: BooksState = {
   selectedIsbn: null
 };
 
+export const minRating = 1;
+export const maxRating = 5;
+
 export function booksReducer(state: BooksState = initialState, action: BooksActions): BooksState {
   switch (action.type) {
 
@@ -31,8 +34,6 @@ export function booksReducer(state: BooksState = initialState, action: BooksActi
 
       return { ...state, books, loading: false };
     }
-
-    
 
     case BooksActionTypes.LoadBookSuccess: {
       const book = action.payload;
@@ -53,6 +54,23 @@ export function booksReducer(state: BooksState = initialState, action: BooksActi
       return { ...state, selectedIsbn };
     }
 
+    case BooksActionTypes.RateUp:
+    case BooksActionTypes.RateDown: {
+
+      const book = action.payload;
+      const ratedBook = {
+        ...book,
+        rating: action.type === BooksActionTypes.RateUp ?
+          Math.min(maxRating, book.rating + 1) :
+          Math.max(minRating, book.rating - 1)
+      };
+
+      const sortedBooks = state.books
+        .map(b => b.isbn === ratedBook.isbn ? ratedBook : b)
+        .sort((a, b) => b.rating - a.rating);
+
+      return { ...state, books: sortedBooks };
+    }
 
     case BooksActionTypes.AddBookSuccess: {
       const newBook = action.payload;

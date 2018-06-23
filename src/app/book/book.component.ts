@@ -10,15 +10,17 @@ import { Book } from '../shared/book';
 export class BookComponent {
 
   @Input() book: Book;
-  @Output() rate = new EventEmitter<Book>();
+  @Input() rateUpAllowed: boolean;
+  @Input() rateDownAllowed: boolean;
 
-  rateUp() {
-    // TODO
-    this.rate.emit(this.book);
+  @Output() rateUp = new EventEmitter<Book>();
+  @Output() rateDown = new EventEmitter<Book>();
+
+  doRateUp() {
+    this.rateUp.emit(this.book);
   }
 
-  rateDown() {
-    // TODO
-    this.rate.emit(this.book);
+  doRateDown() {
+    this.rateDown.emit(this.book);
   }
 }
