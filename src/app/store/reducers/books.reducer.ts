@@ -27,7 +27,7 @@ export function booksReducer(state: BooksState = initialState, action: BooksActi
     }
 
     case BooksActionTypes.LoadBooksSuccess: {
-      const books = action.payload;
+      const books = sortBooks(action.payload);
 
       return { ...state, books, loading: false };
     }
@@ -39,8 +39,13 @@ export function booksReducer(state: BooksState = initialState, action: BooksActi
 
       const cleanedList = state.books.filter(b => b.isbn !== state.selectedIsbn);
       const books = [...cleanedList, book];
+      const sortedBooks = sortBooks(books);
 
-      return { ...state, books, loading: false };
+      return {
+        ...state,
+        books: sortedBooks,
+        loading: false
+      };
     }
 
     case BooksActionTypes.SelectBook: {
@@ -49,8 +54,20 @@ export function booksReducer(state: BooksState = initialState, action: BooksActi
     }
 
 
+    case BooksActionTypes.AddBookSuccess: {
+      const newBook = action.payload;
+      const books = [...state.books, newBook];
+
+      return { ...state, books };
+    }
+
+
     default: {
       return state;
     }
   }
+}
+
+function sortBooks(books: Book[]) {
+  return [...books].sort((a, b) => b.rating - a.rating);
 }

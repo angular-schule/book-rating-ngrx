@@ -1,6 +1,6 @@
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { EffectsModule } from '@ngrx/effects';
 import { RouterStateSerializer, StoreRouterConnectingModule } from '@ngrx/router-store';
@@ -19,6 +19,7 @@ import { BookComponent } from './book/book.component';
 import { CounterComponent } from './counter/counter.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { BookStoreService } from './shared/book-store.service';
+import { CreateBookComponent } from './create-book/create-book.component';
 
 @NgModule({
   declarations: [
@@ -27,10 +28,11 @@ import { BookStoreService } from './shared/book-store.service';
     BookComponent,
     BookDetailsComponent,
     CounterComponent,
+    CreateBookComponent,
   ],
   imports: [
     BrowserModule,
-    FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     AppRoutingModule,
 

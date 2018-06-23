@@ -49,6 +49,19 @@ export class BooksEffects {
   );
 
   /*
+   * add one book by sending it to the API
+   */
+  @Effect()
+  addBook$ = this.actions$.pipe(
+    ofType(BooksActionTypes.AddBook),
+    map((action: booksActions.AddBook) => action.payload),
+    mergeMap(book => this.bs.add(book).pipe(
+      map(() => new booksActions.AddBookSuccess(book)),
+      catchError(err => of(new booksActions.AddBookFail(err)))
+    ))
+  );
+
+  /*
    * do console log when LoadBooksSuccess happens
    */
   @Effect({ dispatch: false })

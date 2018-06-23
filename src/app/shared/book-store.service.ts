@@ -27,6 +27,18 @@ export class BookStoreService {
     );
   }
 
+  add(book: Book): Observable<any> {
+    const newBook = {
+      title: book.title,
+      description: book.description,
+      thumbnails: [{ url: book.thumbnail, title: 'Image' }],
+      isbn: book.isbn,
+      rating: book.rating
+    }
+
+    return this.http.post(`${this.api}/book`, newBook, { responseType: 'text' });
+  }
+
 
   private responseToBook(res: any): Book {
     return {
