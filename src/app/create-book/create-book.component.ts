@@ -28,16 +28,6 @@ export class CreateBookComponent implements OnInit {
       title: new FormControl('', Validators.required),
       description: new FormControl('')
     });
-
-    // Reset form when book has been added successfully
-    this.actions$.pipe(ofType(BooksActionTypes.AddBookSuccess))
-      .subscribe(() => {
-        this.bookForm.reset({
-          isbn: '',
-          title: '',
-          description: ''
-        })
-      });
   }
 
 
@@ -52,6 +42,15 @@ export class CreateBookComponent implements OnInit {
     }
 
     this.store.dispatch(new AddBook(book));
+    this.resetForm();
+  }
+
+  resetForm() {
+    this.bookForm.reset({
+      isbn: '',
+      title: '',
+      description: ''
+    });
   }
 
 }
