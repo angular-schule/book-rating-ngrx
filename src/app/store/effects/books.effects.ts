@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
-import { Observable } from 'rxjs/Observable';
+import { Observable ,  of } from 'rxjs';
 import { mergeMap, map, catchError, tap } from 'rxjs/operators';
-import { of } from 'rxjs/observable/of';
 
 import { BookStoreService } from '../../shared/book-store.service';
 import { BooksActionTypes } from '../actions/books.actions';

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Store, select } from '@ngrx/store';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 
 import { State } from '../store/reducers/index';
 import { getCurrent } from '../store/selectors/counter.selectors';
