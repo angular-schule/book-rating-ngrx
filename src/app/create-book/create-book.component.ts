@@ -4,8 +4,7 @@ import { Store } from '@ngrx/store';
 
 import { Book } from '../shared/book';
 import { BooksState } from '../store/reducers/books.reducer';
-import { AddBook, BooksActionTypes } from '../store/actions/books.actions';
-import { Actions, ofType } from '@ngrx/effects';
+import { AddBook } from '../store/actions/books.actions';
 
 @Component({
   selector: 'br-create-book',
@@ -16,7 +15,7 @@ export class CreateBookComponent implements OnInit {
 
   bookForm: FormGroup;
 
-  constructor(private store: Store<BooksState>, private actions$: Actions) { }
+  constructor(private store: Store<BooksState>) { }
 
   ngOnInit() {
     this.bookForm = new FormGroup({
