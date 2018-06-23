@@ -1,4 +1,4 @@
-<ng-container *ngIf="book$ | async as book">
+<div *ngIf="book$ | async as book" style="margin-top: 80px">
 
   <h3>
     {{ book.title }}
@@ -20,5 +20,8 @@
   <hr>
   <button class="btn btn-success" routerLink="/">Zurück zum Dashboard</button>
 
-</ng-container>
+</div>
+
+
+
 

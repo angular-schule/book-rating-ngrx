@@ -1,20 +1,33 @@
 <div class="card mb-4">
   <div class="card-body bg-light">
-    <div class="img-thumbnail float-right">
-      <img src="//ng-buch.de/avatar/{{book.rating}}">
+
+    <img class="img-thumbnail float-right"
+         src="{{ book.thumbnail }}" width="150">
+
+    <div class="card-title">
+      <h2>
+        {{ book.title }}
+        <span class="badge badge-secondary">
+          {{ book.rating }}
+        </span>
+      </h2>
+
     </div>
+    <p>
+      {{ book.description }}
+    </p>
 
-    <h2>{{ book.title }}
-      <small>Stars {{ book.rating }}</small>
-    </h2>
-    <p>{{ book.description }}</p>
+    <button
+      disabled
+      (click)="rateDown()"
+      class="mr-2 btn btn-danger">👎</button>
 
-    <button (click)="rateUp()"
-      class="btn btn-secondary fa fa-thumbs-up"></button>
-
-    <button (click)="rateDown()"
-      class="btn btn-secondary fa fa-thumbs-down"></button>
+    <button
+      disabled
+      (click)="rateUp()"
+      class="btn btn-success mr-2">👍</button>
 
     <a [routerLink]="['/book', book.isbn]" class="btn btn-secondary">Details</a>
+
   </div>
 </div>

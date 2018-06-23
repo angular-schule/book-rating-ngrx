@@ -17,7 +17,6 @@ import { AppComponent } from './app.component';
 import { BookDetailsComponent } from './book-details/book-details.component';
 import { BookComponent } from './book/book.component';
 import { CounterComponent } from './counter/counter.component';
-import { CreateBookComponent } from './create-book/create-book.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { BookStoreService } from './shared/book-store.service';
 
@@ -26,7 +25,6 @@ import { BookStoreService } from './shared/book-store.service';
     AppComponent,
     DashboardComponent,
     BookComponent,
-    CreateBookComponent,
     BookDetailsComponent,
     CounterComponent,
   ],
@@ -48,7 +46,7 @@ import { BookStoreService } from './shared/book-store.service';
     /**
      * @ngrx/router-store keeps router state up-to-date in the store.
      */
-    StoreRouterConnectingModule,
+    // StoreRouterConnectingModule,
 
     /**
      * Store devtools instrument the store retaining past versions of state
@@ -79,7 +77,7 @@ import { BookStoreService } from './shared/book-store.service';
      * A custom RouterStateSerializer is used to parse the `RouterStateSnapshot` provided
      * by `@ngrx/router-store` to include only the desired pieces of the snapshot.
      */
-    { provide: RouterStateSerializer, useClass: CustomRouterStateSerializer }
+    // { provide: RouterStateSerializer, useClass: CustomRouterStateSerializer }
   ],
   bootstrap: [AppComponent]
 })

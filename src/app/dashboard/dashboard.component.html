@@ -1,15 +1,10 @@
-<br-create-book (bookCreate)="addBookToList($event)"></br-create-book>
-
-<div *ngIf="loading$ | async">
-  Loading Books...
+<div class="progress mb-4" *ngIf="loading$ | async" style="margin-top: 90px">
+  <div class="progress-bar progress-bar-striped progress-bar-animated" style="width: 100%">
+    Bücher werden geladen…
+  </div>
 </div>
 
-<ng-container *ngIf="books$ | async as books">
 
-  <br-book
-    [book]="b"
-    *ngFor="let b of books"></br-book>
-
-  Anzahl der Bücher: {{ books.length }}
-
-</ng-container>
+<p>
+  <br-book *ngFor="let b of books$ | async" [book]="b"></br-book>
+</p>

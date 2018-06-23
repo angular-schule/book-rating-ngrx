@@ -32,6 +32,8 @@ export function booksReducer(state: BooksState = initialState, action: BooksActi
       return { ...state, books, loading: false };
     }
 
+    
+
     case BooksActionTypes.LoadBookSuccess: {
       const book = action.payload;
 

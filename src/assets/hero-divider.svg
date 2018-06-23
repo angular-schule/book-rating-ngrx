@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1280px" height="143px" viewBox="0 0 1280 143" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 44.1 (41455) - http://www.bohemiancoding.com/sketch -->
+    <title>hero-divider</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Artboard" transform="translate(0.000000, -325.000000)">
+            <g id="hero-divider" transform="translate(0.000000, 324.929688)">
+                <polygon id="Rectangle" fill="#F8F8F8" opacity="0.207937047" points="0 23.8359375 1280 1.26171875 0 87.0478516"></polygon>
+                <polygon id="Rectangle-Copy" fill="#FFFFFF" points="0 87 1280 1 1280 143 0 143"></polygon>
+                <polygon id="Rectangle-Copy-2" fill="#F8F8F8" opacity="0.207937047" points="0 63.4023438 1280 2.26171875 0 86.6328125"></polygon>
+            </g>
+        </g>
+    </g>
+</svg>
