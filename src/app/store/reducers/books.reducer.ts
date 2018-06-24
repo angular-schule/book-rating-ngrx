@@ -83,11 +83,6 @@ function replaceInList(books: Book[], book: Book) {
     .sort((a, b) => b.rating - a.rating);
 }
 
-// sorts a shallow copy of the books-array
-function sortBooks(books: Book[]) {
-  return [...books].sort((a, b) => b.rating - a.rating);
-}
-
 // creates a shallow copy of the book and changes the rating by +-1
 function rateBook(book: Book, type: BooksActionTypes.RateUp | BooksActionTypes.RateDown) {
   return  {
