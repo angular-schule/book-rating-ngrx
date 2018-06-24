@@ -38,7 +38,7 @@ export class CreateBookComponent implements OnInit {
       description: value.description,
       thumbnail: 'http://api.angular.schule/avatar/0',
       rating: 1
-    }
+    };
 
     this.store.dispatch(new AddBook(book));
     this.resetForm();
