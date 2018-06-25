@@ -15,41 +15,39 @@
 	// 	],
 	// 	"description": "Log output to console"
 	// }
-	"rx1": {
+	"q1": {
 		"scope": "typescript",
-		"prefix": "rx1 (books.reducer.ts)",
+		"prefix": "q1 (books.reducer.ts)",
 		"body": [
 			"export interface BooksState {",
 			"  books: Book[];",
 			"  loading: boolean;",
-			"  selectedIsbn: string;",
 			"}",
 		],
 		"description": "export interface BooksState {"
 	},
-	"rx2": {
+	"q2": {
 		"scope": "typescript",
-		"prefix": "rx2 (books.reducer.ts)",
+		"prefix": "q2 (books.reducer.ts)",
 		"body": [
-			"  books: [],",
-			"  loading: false,",
-			"  selectedIsbn: null"
+			"books: [],",
+			"loading: false"
 		],
 		"description": "initialState"
 	},
-	"rx3": {
+	"q3": {
 		"scope": "typescript",
-		"prefix": "rx3 (books.actions.ts)",
+		"prefix": "q3 (books.actions.ts)",
 		"body": [
 			"  LoadBooks = '[Books] Load all books',",
 			"  LoadBooksSuccess = '[Books] Load all books success',",
-			"  LoadBooksFail = '[Books] Load all books fail',"
+			"  LoadBooksFail = '[Books] Load all books fail'"
 		],
 		"description": "BooksActionTypes"
 	},
-	"rx4": {
+	"q4": {
 		"scope": "typescript",
-		"prefix": "rx4 (books.actions.ts)",
+		"prefix": "q4 (books.actions.ts)",
 		"body": [
 			"export class LoadBooks implements Action {",
 			"  readonly type = BooksActionTypes.LoadBooks;",
@@ -67,9 +65,9 @@
 		],
 		"description": "export class LoadBooks implements Action {"
 	},
-	"rx4_type1": {
+	"q4_type1": {
 		"scope": "typescript",
-		"prefix": "rx4_type1 (books.actions.ts)",
+		"prefix": "q4_type1 (books.actions.ts)",
 		"body": [
 			"export class $1 implements Action {",
 			"  readonly type = BooksActionTypes.$1;",
@@ -77,9 +75,9 @@
 		],
 		"description": "export class XXX implements Action {"
 	},
-	"rx4_type2": {
+	"q4_type2": {
 		"scope": "typescript",
-		"prefix": "rx4_type2 (books.actions.ts)",
+		"prefix": "q4_type2 (books.actions.ts)",
 		"body": [
 			"export class $1 implements Action {",
 			"  readonly type = BooksActionTypes.$1;",
@@ -88,39 +86,39 @@
 		],
 		"description": "export class XXX implements Action {"
 	},
-	"rx5": {
+	"q5": {
 		"scope": "typescript",
-		"prefix": "rx5 (dashboard.component.ts)",
+		"prefix": "q5 (dashboard.component.ts)",
 		"body": [
 			"this.store.dispatch(new LoadBooks());"
 		],
 		"description": "this.store.dispatch(new LoadBooks());"
 	},
-	"rx6": {
+	"q6": {
 		"scope": "typescript",
-		"prefix": "rx6 (books.reducer.ts)",
+		"prefix": "q6 (books.reducer.ts)",
 		"body": [
-			"    case BooksActionTypes.LoadBooks: {",
-			"      return { ...state, loading: true };",
-			"    }"
+			"case BooksActionTypes.LoadBooks: {",
+			"  return { ...state, loading: true };",
+			"}"
 		],
 		"description": "case BooksActionTypes.LoadBooks: {"
 	},
-	"rx6_s": {
+	"q6_s": {
 		"scope": "typescript",
-		"prefix": "rx6_s (books.reducer.ts)",
+		"prefix": "q6_s (books.reducer.ts)",
 		"body": [
-			"    case BooksActionTypes.$1: {",
-			"      return {",
-			"        $2",
-			"      ;",
-			"    }"
+			"case BooksActionTypes.$1: {",
+			"  return {",
+			"    $2",
+			"  };",
+			"}"
 		],
 		"description": "case BooksActionTypes.LoadBooks: {"
 	},
-	"rx7": {
+	"q7": {
 		"scope": "typescript",
-		"prefix": "rx7 (books.selectors.ts)",
+		"prefix": "q7 (books.selectors.ts)",
 		"body": [
 			"export const getBooksLoading = createSelector(",
 			"  getBooksState,",
@@ -129,53 +127,53 @@
 		],
 		"description": "export const getBooksLoading = createSelector("
 	},
-	"rx8": {
+	"q8": {
 		"scope": "typescript",
-		"prefix": "rx8 (books.selectors.ts)",
+		"prefix": "q8 (books.selectors.ts)",
 		"body": [
-			"export const getBooksLoading = createSelector(",
+			"export const getAllBooks = createSelector(",
 			"  getBooksState,",
-			"  state => state.loading",
+			"  state => state.books",
 			");"
 		],
-		"description": "export const getBooksLoading = createSelector("
+		"description": "export const getAllBooks = createSelector("
 	},
-	"rx9": {
+	"q9": {
 		"scope": "typescript",
-		"prefix": "rx9 (dashboard.component.ts)",
+		"prefix": "q9 (dashboard.component.ts)",
 		"body": [
 			"this.loading$ = this.store.pipe(select(getBooksLoading));"
 		],
 		"description": "this.loading$ = this.store.pipe(select(getBooksLoading));"
 	},
-	"rx10": {
+	"q10": {
 		"scope": "typescript",
-		"prefix": "rx10 (books.effects.ts)",
+		"prefix": "q10 (books.effects.ts)",
 		"body": [
-			"  @Effect()",
-			"  loadBooks$ = this.actions$.pipe(",
-			"    ofType(BooksActionTypes.LoadBooks),",
-			"    mergeMap(() => this.bs.getAll()),",
-			"    map(books => new booksActions.LoadBooksSuccess(books))",
-			"  );"
+			"@Effect()",
+			"loadBooks$ = this.actions$.pipe(",
+			"  ofType(BooksActionTypes.LoadBooks),",
+			"  mergeMap(() => this.bs.getAll()),",
+			"  map(books => new booksActions.LoadBooksSuccess(books))",
+			");"
 		],
 		"description": "@Effect()"
 	},
-	"rx11": {
+	"q11": {
 		"scope": "typescript",
-		"prefix": "rx11 (books.reducers.ts)",
+		"prefix": "q11 (books.reducers.ts)",
 		"body": [
-			"    case BooksActionTypes.LoadBooksSuccess: {",
-			"      const books = action.payload;",
+			"case BooksActionTypes.LoadBooksSuccess: {",
+			"  const books = action.payload;",
 			"",
-			"      return { ...state, books, loading: false };",
-			"    }"
+			"    return { ...state, books, loading: false };",
+			"}"
 			],
 		"description": "case BooksActionTypes.LoadBooksSuccess: {"
 	},
-	"rx12": {
+	"q12": {
 		"scope": "typescript",
-		"prefix": "rx12 (dashboard.component.ts)",
+		"prefix": "q12 (dashboard.component.ts)",
 		"body": [
 			"    this.books$ = this.store.pipe(",
 			"      select(getAllBooks)",

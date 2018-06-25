@@ -1,4 +1,4 @@
-#rx1 - TODO_1
+#q1 - TODO_1
 // books.reducer.ts
 export interface BooksState {
   books: Book[];
@@ -7,7 +7,7 @@ export interface BooksState {
 }
 
 
-#rx2 - TODO_2
+#q2 - TODO_2
 // books.reducer.ts --> initialState
 
   books: [],
@@ -17,7 +17,7 @@ WICHTIG:
 __initialState: BooksState__
 
 
-#rx3 - TODO_3
+#q3 - TODO_3
 // books.actions.ts --> BooksActionTypes
 
   LoadBooks = '[Books] Load all books',
@@ -25,8 +25,8 @@ __initialState: BooksState__
   LoadBooksFail = '[Books] Load all books fail'
   
   
-#rx4 - TODO_4 (by hand)
-# ODER --> rx4_type1 + rx4_type2_
+#q4 - TODO_4 (by hand)
+# ODER --> q4_type1 + q4_type2
 // books.actions.ts
 export class LoadBooks implements Action {
   readonly type = BooksActionTypes.LoadBooks;
@@ -42,19 +42,19 @@ export class LoadBooksFail implements Action {
   constructor(public payload: any) {}
 }
 
-#rx5 - TODO_5
+#q5 - TODO_5
 // dashboard.component.ts
 this.store.dispatch(new LoadBooks());
 
 
-#rx6 - TODO_6 (by hand)
-# ODER rx6_s
+#q6 - TODO_6 (by hand)
+# ODER q6_s
 // books.reducer.ts 
     case BooksActionTypes.LoadBooks: {
       return { ...state, loading: true };
     }
 	
-#rx7 - TODO_7
+#q7 - TODO_7
 // books.selectors.ts
 export const getBooksLoading = createSelector(
   getBooksState,
@@ -62,7 +62,7 @@ export const getBooksLoading = createSelector(
 );
 
 
-#rx8 - TODO_8
+#q8 - TODO_8
 // books.selectors.ts
 export const getAllBooks = createSelector(
   getBooksState,
@@ -70,12 +70,12 @@ export const getAllBooks = createSelector(
 );
 
 
-#rx9 - TODO_9
+#q9 - TODO_9
 // dashboard.component.ts
     this.loading$ = this.store.pipe(select(getBooksLoading));
 	
 	
-#rx10 - TODO_10 !! (by hand)
+#q10 - TODO_10 !! (by hand)
 // books.effects.ts
 
   @Effect()
@@ -86,7 +86,7 @@ export const getAllBooks = createSelector(
   );
   
   
-#rx11 - TODO_11
+#q11 - TODO_11
 // books.reducers.ts
     case BooksActionTypes.LoadBooksSuccess: {
       const books = action.payload;
@@ -94,7 +94,7 @@ export const getAllBooks = createSelector(
       return { ...state, books, loading: false };
     }
 
-#rx12 - TODO_12
+#q12 - TODO_12
 // dashboard.component.ts
     this.books$ = this.store.pipe(
       select(getAllBooks)
