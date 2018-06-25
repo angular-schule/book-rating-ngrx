@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import { Book } from '../shared/book';
 import { State } from '../store/reducers';
 import { LoadBooks } from '../store/actions/books.actions';
-import { getAllBooks, getBooksLoading } from '../store/selectors/books.selectors';
+// import { getAllBooks, getBooksLoading } from '../store/selectors/books.selectors';
 
 @Component({
   selector: 'br-dashboard',
