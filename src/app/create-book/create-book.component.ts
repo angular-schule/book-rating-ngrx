@@ -4,7 +4,7 @@ import { Store } from '@ngrx/store';
 
 import { Book } from '../shared/book';
 import { BooksState } from '../store/reducers/books.reducer';
-import { AddBook } from '../store/actions/books.actions';
+// import { AddBook } from '../store/actions/books.actions';
 
 @Component({
   selector: 'br-create-book',
@@ -40,7 +40,7 @@ export class CreateBookComponent implements OnInit {
       rating: 1
     };
 
-    this.store.dispatch(new AddBook(book));
+    // this.store.dispatch(new AddBook(book));
     this.resetForm();
   }
 

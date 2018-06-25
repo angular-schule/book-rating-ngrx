@@ -11,8 +11,7 @@ export interface BooksState {
 // books.reducer.ts --> initialState
 
   books: [],
-  loading: false,
-  selectedIsbn: null
+  loading: false
   
 WICHTIG: 
 __initialState: BooksState__
@@ -23,7 +22,7 @@ __initialState: BooksState__
 
   LoadBooks = '[Books] Load all books',
   LoadBooksSuccess = '[Books] Load all books success',
-  LoadBooksFail = '[Books] Load all books fail',
+  LoadBooksFail = '[Books] Load all books fail'
   
   
 #rx4 - TODO_4 (by hand)
