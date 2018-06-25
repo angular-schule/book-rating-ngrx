@@ -1,5 +1,5 @@
 import { createSelector, createFeatureSelector } from '@ngrx/store';
-import { BooksState, maxRating, minRating } from '../reducers/books.reducer';
+import { BooksState } from '../reducers/books.reducer';
 
 /**
  * The createFeatureSelector function selects a piece of state from the root of the state object.
@@ -13,41 +13,9 @@ export const getBooksState = createFeatureSelector<BooksState>('books');
  * returns a function that maps from the larger state tree into a smaller
  * piece of state.
  */
-export const getAllBooks = createSelector(
-  getBooksState,
-  state => state.books
-);
+// TODO_7: selector for books.loading
 
-export const getBooksLoading = createSelector(
-  getBooksState,
-  state => state.loading
-);
+// TODO_8: selector for books.books
 
-export const getSelectedIsbn = createSelector(
-  getBooksState,
-  state => state.selectedIsbn
-);
 
-export const getSelectedBook = createSelector(
-  getAllBooks,
-  getSelectedIsbn,
-  (books, isbn) => books.find(b => b.isbn === isbn)
-);
 
-export const getRateUpAllowed = createSelector(
-  getAllBooks,
-  getSelectedIsbn,
-  (books, isbn) => books.find(b => b.isbn === isbn)
-);
-
-// parameterized selector
-export const rateUpAllowed = createSelector(
-  getAllBooks,
-  books => (isbn: string) => books.find(b => b.isbn === isbn).rating < maxRating
-);
-
-// parameterized selector
-export const rateDownAllowed = createSelector(
-  getAllBooks,
-  books => (isbn: string) => books.find(b => b.isbn === isbn).rating > minRating
-);
