@@ -1,9 +1,9 @@
 {
-	// Place your global snippets here. Each snippet is defined under a snippet name and has a scope, prefix, body and 
-	// description. Add comma separated ids of the languages where the snippet is applicable in the scope field. If scope 
-	// is left empty or omitted, the snippet gets applied to all languages. The prefix is what is 
-	// used to trigger the snippet and the body will be expanded and inserted. Possible variables are: 
-	// $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. 
+	// Place your global snippets here. Each snippet is defined under a snippet name and has a scope, prefix, body and
+	// description. Add comma separated ids of the languages where the snippet is applicable in the scope field. If scope
+	// is left empty or omitted, the snippet gets applied to all languages. The prefix is what is
+	// used to trigger the snippet and the body will be expanded and inserted. Possible variables are:
+	// $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders.
 	// Placeholders with the same ids are connected.
 	// Example:
 	// "Print to console": {
@@ -67,6 +67,27 @@
 		],
 		"description": "export class LoadBooks implements Action {"
 	},
+	"rx4_type1": {
+		"scope": "typescript",
+		"prefix": "rx4_type1 (books.actions.ts)",
+		"body": [
+			"export class $1 implements Action {",
+			"  readonly type = BooksActionTypes.$1;",
+			"}"
+		],
+		"description": "export class XXX implements Action {"
+	},
+	"rx4_type2": {
+		"scope": "typescript",
+		"prefix": "rx4_type2 (books.actions.ts)",
+		"body": [
+			"export class $1 implements Action {",
+			"  readonly type = BooksActionTypes.$1;",
+			"  constructor(public payload: $2) {}",
+			"}"
+		],
+		"description": "export class XXX implements Action {"
+	},
 	"rx5": {
 		"scope": "typescript",
 		"prefix": "rx5 (dashboard.component.ts)",
@@ -81,6 +102,18 @@
 		"body": [
 			"    case BooksActionTypes.LoadBooks: {",
 			"      return { ...state, loading: true };",
+			"    }"
+		],
+		"description": "case BooksActionTypes.LoadBooks: {"
+	},
+	"rx6_s": {
+		"scope": "typescript",
+		"prefix": "rx6_s (books.reducer.ts)",
+		"body": [
+			"    case BooksActionTypes.$1: {",
+			"      return {",
+			"        $2",
+			"      ;",
 			"    }"
 		],
 		"description": "case BooksActionTypes.LoadBooks: {"

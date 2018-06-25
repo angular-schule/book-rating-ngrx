@@ -27,6 +27,7 @@ __initialState: BooksState__
   
   
 #rx4 - TODO_4 (by hand)
+# ODER --> rx4_type1 + rx4_type2_
 // books.actions.ts
 export class LoadBooks implements Action {
   readonly type = BooksActionTypes.LoadBooks;
@@ -48,6 +49,7 @@ this.store.dispatch(new LoadBooks());
 
 
 #rx6 - TODO_6 (by hand)
+# ODER rx6_s
 // books.reducer.ts 
     case BooksActionTypes.LoadBooks: {
       return { ...state, loading: true };
