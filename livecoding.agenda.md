@@ -1,4 +1,4 @@
-#TODO_1
+#rx1 - TODO_1
 // books.reducer.ts
 export interface BooksState {
   books: Book[];
@@ -7,7 +7,7 @@ export interface BooksState {
 }
 
 
-#TODO_2
+#rx2 - TODO_2
 // books.reducer.ts --> initialState
 
   books: [],
@@ -15,10 +15,10 @@ export interface BooksState {
   selectedIsbn: null
   
 WICHTIG: 
-initialState: BooksState
+__initialState: BooksState__
 
 
-#TODO_3
+#rx3 - TODO_3
 // books.actions.ts --> BooksActionTypes
 
   LoadBooks = '[Books] Load all books',
@@ -26,7 +26,7 @@ initialState: BooksState
   LoadBooksFail = '[Books] Load all books fail',
   
   
-#TODO_4 (by hand)
+#rx4 - TODO_4 (by hand)
 // books.actions.ts
 export class LoadBooks implements Action {
   readonly type = BooksActionTypes.LoadBooks;
@@ -42,18 +42,18 @@ export class LoadBooksFail implements Action {
   constructor(public payload: any) {}
 }
 
-#TODO_5
+#rx5 - TODO_5
 // dashboard.component.ts
 this.store.dispatch(new LoadBooks());
 
 
-#TODO_6
+#rx6 - TODO_6 (by hand)
 // books.reducer.ts 
     case BooksActionTypes.LoadBooks: {
       return { ...state, loading: true };
     }
 	
-#TODO_7
+#rx7 - TODO_7
 // books.selectors.ts
 export const getBooksLoading = createSelector(
   getBooksState,
@@ -61,7 +61,7 @@ export const getBooksLoading = createSelector(
 );
 
 
-#TODO_8
+#rx8 - TODO_8
 // books.selectors.ts
 export const getAllBooks = createSelector(
   getBooksState,
@@ -69,12 +69,12 @@ export const getAllBooks = createSelector(
 );
 
 
-#TODO_9
+#rx9 - TODO_9
 // dashboard.component.ts
     this.loading$ = this.store.pipe(select(getBooksLoading));
 	
 	
-#TODO_10 !! (by hand)
+#rx10 - TODO_10 !! (by hand)
 // books.effects.ts
 
   @Effect()
@@ -85,7 +85,7 @@ export const getAllBooks = createSelector(
   );
   
   
-#TODO_11
+#rx11 - TODO_11
 // books.reducers.ts
     case BooksActionTypes.LoadBooksSuccess: {
       const books = action.payload;
@@ -93,7 +93,7 @@ export const getAllBooks = createSelector(
       return { ...state, books, loading: false };
     }
 
-#TODO_12
+#rx12 - TODO_12
 // dashboard.component.ts
     this.books$ = this.store.pipe(
       select(getAllBooks)

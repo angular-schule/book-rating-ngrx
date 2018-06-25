@@ -1,0 +1,153 @@
+{
+	// Place your global snippets here. Each snippet is defined under a snippet name and has a scope, prefix, body and 
+	// description. Add comma separated ids of the languages where the snippet is applicable in the scope field. If scope 
+	// is left empty or omitted, the snippet gets applied to all languages. The prefix is what is 
+	// used to trigger the snippet and the body will be expanded and inserted. Possible variables are: 
+	// $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. 
+	// Placeholders with the same ids are connected.
+	// Example:
+	// "Print to console": {
+	// 	"scope": "javascript,typescript",
+	// 	"prefix": "log",
+	// 	"body": [
+	// 		"console.log('$1');",
+	// 		"$2"
+	// 	],
+	// 	"description": "Log output to console"
+	// }
+	"rx1": {
+		"scope": "typescript",
+		"prefix": "rx1 (books.reducer.ts)",
+		"body": [
+			"export interface BooksState {",
+			"  books: Book[];",
+			"  loading: boolean;",
+			"  selectedIsbn: string;",
+			"}",
+		],
+		"description": "export interface BooksState {"
+	},
+	"rx2": {
+		"scope": "typescript",
+		"prefix": "rx2 (books.reducer.ts)",
+		"body": [
+			"  books: [],",
+			"  loading: false,",
+			"  selectedIsbn: null"
+		],
+		"description": "initialState"
+	},
+	"rx3": {
+		"scope": "typescript",
+		"prefix": "rx3 (books.actions.ts)",
+		"body": [
+			"  LoadBooks = '[Books] Load all books',",
+			"  LoadBooksSuccess = '[Books] Load all books success',",
+			"  LoadBooksFail = '[Books] Load all books fail',"
+		],
+		"description": "BooksActionTypes"
+	},
+	"rx4": {
+		"scope": "typescript",
+		"prefix": "rx4 (books.actions.ts)",
+		"body": [
+			"export class LoadBooks implements Action {",
+			"  readonly type = BooksActionTypes.LoadBooks;",
+			"}",
+			"",
+			"export class LoadBooksSuccess implements Action {",
+			"  readonly type = BooksActionTypes.LoadBooksSuccess;",
+			"  constructor(public payload: Book[]) {}",
+			"}",
+			"",
+			"export class LoadBooksFail implements Action {",
+			"  readonly type = BooksActionTypes.LoadBooksFail;",
+			"  constructor(public payload: any) {}",
+			"}"
+		],
+		"description": "export class LoadBooks implements Action {"
+	},
+	"rx5": {
+		"scope": "typescript",
+		"prefix": "rx5 (dashboard.component.ts)",
+		"body": [
+			"this.store.dispatch(new LoadBooks());"
+		],
+		"description": "this.store.dispatch(new LoadBooks());"
+	},
+	"rx6": {
+		"scope": "typescript",
+		"prefix": "rx6 (books.reducer.ts)",
+		"body": [
+			"    case BooksActionTypes.LoadBooks: {",
+			"      return { ...state, loading: true };",
+			"    }"
+		],
+		"description": "case BooksActionTypes.LoadBooks: {"
+	},
+	"rx7": {
+		"scope": "typescript",
+		"prefix": "rx7 (books.selectors.ts)",
+		"body": [
+			"export const getBooksLoading = createSelector(",
+			"  getBooksState,",
+			"  state => state.loading",
+			");"
+		],
+		"description": "export const getBooksLoading = createSelector("
+	},
+	"rx8": {
+		"scope": "typescript",
+		"prefix": "rx8 (books.selectors.ts)",
+		"body": [
+			"export const getBooksLoading = createSelector(",
+			"  getBooksState,",
+			"  state => state.loading",
+			");"
+		],
+		"description": "export const getBooksLoading = createSelector("
+	},
+	"rx9": {
+		"scope": "typescript",
+		"prefix": "rx9 (dashboard.component.ts)",
+		"body": [
+			"this.loading$ = this.store.pipe(select(getBooksLoading));"
+		],
+		"description": "this.loading$ = this.store.pipe(select(getBooksLoading));"
+	},
+	"rx10": {
+		"scope": "typescript",
+		"prefix": "rx10 (books.effects.ts)",
+		"body": [
+			"  @Effect()",
+			"  loadBooks$ = this.actions$.pipe(",
+			"    ofType(BooksActionTypes.LoadBooks),",
+			"    mergeMap(() => this.bs.getAll()),",
+			"    map(books => new booksActions.LoadBooksSuccess(books))",
+			"  );"
+		],
+		"description": "@Effect()"
+	},
+	"rx11": {
+		"scope": "typescript",
+		"prefix": "rx11 (books.reducers.ts)",
+		"body": [
+			"    case BooksActionTypes.LoadBooksSuccess: {",
+			"      const books = action.payload;",
+			"",
+			"      return { ...state, books, loading: false };",
+			"    }"
+			],
+		"description": "case BooksActionTypes.LoadBooksSuccess: {"
+	},
+	"rx12": {
+		"scope": "typescript",
+		"prefix": "rx12 (dashboard.component.ts)",
+		"body": [
+			"    this.books$ = this.store.pipe(",
+			"      select(getAllBooks)",
+			"    );"
+			],
+		"description": "this.books$ = this.store.pipe("
+	},
+}
