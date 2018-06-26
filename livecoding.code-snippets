@@ -166,7 +166,9 @@
 			"case BooksActionTypes.LoadBooksSuccess: {",
 			"  const books = action.payload;",
 			"",
-			"    return { ...state, books, loading: false };",
+			"  return { ",
+			"    ",
+			"  };",
 			"}"
 			],
 		"description": "case BooksActionTypes.LoadBooksSuccess: {"
