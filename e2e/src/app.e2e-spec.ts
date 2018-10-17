@@ -1,13 +1,13 @@
-import { BookRatingReduxPage } from './app.po';
+import { AppPage } from './app.po';
 
-describe('book-rating-redux App', () => {
-  let page: BookRatingReduxPage;
+describe('workspace-project App', () => {
+  let page: AppPage;
 
   beforeEach(() => {
-    page = new BookRatingReduxPage();
+    page = new AppPage();
   });
 
-  it('should display message saying Book Rating', () => {
+  it('should display welcome message', () => {
     page.navigateTo();
     expect(page.getParagraphText()).toEqual('Book Rating');
   });
