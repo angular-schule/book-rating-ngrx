@@ -1,8 +1,6 @@
-<br-create-book></br-create-book>
-
 <div class="progress mb-4 mt-5" *ngIf="loading$ | async">
   <div class="progress-bar progress-bar-striped progress-bar-animated" style="width: 100%">
-    Bücher werden geladen…
+    Loading books...
   </div>
 </div>
 
@@ -10,8 +8,6 @@
 <p>
   <br-book *ngFor="let b of books$ | async"
     [book]="b"
-    [rateUpAllowed]="(rateUpAllowed$ | async)(b.isbn)"
-    [rateDownAllowed]="(rateDownAllowed$ | async)(b.isbn)"
     (rateUp)="doRateUp($event)"
     (rateDown)="doRateDown($event)"
     ></br-book>

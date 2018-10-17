@@ -1,7 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { BookComponent } from './book.component';
-import { Book } from 'app/shared/book';
 import { RouterTestingModule } from '@angular/router/testing';
 
 describe('BookComponent', () => {

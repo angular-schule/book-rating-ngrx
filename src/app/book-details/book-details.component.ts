@@ -1,13 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Store, select } from '@ngrx/store';
+import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
-
-import { State } from '../store/reducers';
-import { getSelectedBook } from '../store/selectors/books.selectors';
-import { SelectBook } from '../store/actions/books.actions';
+import { ActivatedRoute } from '@angular/router';
+import { map, switchMap } from 'rxjs/operators';
 
 import { Book } from '../shared/book';
+import { BookStoreService } from '../shared/book-store.service';
 
 @Component({
   selector: 'br-book-details',
@@ -17,11 +14,12 @@ export class BookDetailsComponent {
 
   book$: Observable<Book>;
 
-  constructor(private route: ActivatedRoute, private store: Store<State>) {
+  constructor(private route: ActivatedRoute, private bs: BookStoreService) {
 
-    this.book$ = store.pipe(select(getSelectedBook));
+    this.book$ = this.route.paramMap.pipe(
+      map(params => params.get('isbn')),
+      switchMap(isbn => this.bs.getSingle(isbn))
+    );
 
-    const isbn = this.route.snapshot.params.isbn;
-    this.store.dispatch(new SelectBook(isbn));
   }
 }

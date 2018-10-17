@@ -1,7 +1,6 @@
 import { TestBed, inject } from '@angular/core/testing';
 import { Http } from '@angular/http';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/observable/of';
+import { of } from 'rxjs';
 
 import { BookStoreService } from './book-store.service';
 
@@ -12,7 +11,7 @@ describe('BookStoreService', () => {
         {
           provide: Http,
           useValue: {
-            get: () => Observable.of({
+            get: () => of({
               json: () => []
             })
           }

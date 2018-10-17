@@ -1,8 +1,4 @@
 import { Component } from '@angular/core';
-import { Store } from '@ngrx/store';
-
-import { State } from './store/reducers';
-import { LoadBooks } from './store/actions/books.actions';
 
 @Component({
   selector: 'br-root',
@@ -12,6 +8,6 @@ import { LoadBooks } from './store/actions/books.actions';
 export class AppComponent {
   title = 'Book Rating';
 
-  constructor(private store: Store<State>) {
+  constructor() {
   }
 }

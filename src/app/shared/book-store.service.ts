@@ -15,15 +15,13 @@ export class BookStoreService {
 
   getAll(): Observable<Book[]> {
     return this.http.get<Book[]>(`${this.api}/books`).pipe(
-      map(books => books.map(book => this.responseToBook(book))),
-      delay(1000)
+      map(books => books.map(book => this.responseToBook(book)))
     );
   }
 
   getSingle(isbn: string): Observable<Book> {
     return this.http.get<Book>(`${this.api}/book/${isbn}`).pipe(
-      map(book => this.responseToBook(book)),
-      delay(1000)
+      map(book => this.responseToBook(book))
     );
   }
 
@@ -34,7 +32,7 @@ export class BookStoreService {
       thumbnails: [{ url: book.thumbnail, title: 'Image' }],
       isbn: book.isbn,
       rating: book.rating
-    }
+    };
 
     return this.http.post(`${this.api}/book`, newBook, { responseType: 'text' });
   }
@@ -47,6 +45,6 @@ export class BookStoreService {
       description: res.description,
       rating: res.rating,
       thumbnail: res.thumbnails && res.thumbnails[0].url
-    }
+    };
   }
 }

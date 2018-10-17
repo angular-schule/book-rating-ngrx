@@ -18,12 +18,12 @@
     </p>
 
     <button
-      [disabled]="!rateDownAllowed"
+      [disabled]="book.rating < 2"
       (click)="doRateDown()"
       class="mr-2 btn btn-danger">👎</button>
 
     <button
-      [disabled]="!rateUpAllowed"
+      [disabled]="book.rating > 4"
       (click)="doRateUp()"
       class="btn btn-success mr-2">👍</button>
 
