@@ -23,6 +23,7 @@ npm i
 ```
 
 
+
 ## 2. Install @ngrx/schematics
 
 We need to install the NgRx schematics
@@ -43,6 +44,7 @@ You can save some keystrokes and skip the `@ngrx/schematics:` prefix when the de
 For the sake of clarity, however, we leave it at the default settings.
 
 
+
 ## 3. Initial Store Setup 
 
 <small>[docs](https://github.com/ngrx/platform/blob/master/docs/schematics/store.md)</small>
@@ -53,18 +55,9 @@ Generate the initial state management and register it within the `app.module.ts`
 ng generate @ngrx/schematics:store State --root --module app.module.ts
 ```
 
-## 4. Initial Effects Setup
-
-<small>[docs](https://github.com/ngrx/platform/blob/master/docs/schematics/effect.md)</small>
-
-Generate the root effects and register it within the `app.module.ts`
-
-```sh
-ng generate @ngrx/schematics:effect App --root --module app.module.ts
-```
 
 
-## 5. Create the reducer file
+## 4. Create the reducer file
 
 <small>[docs](https://github.com/ngrx/platform/blob/master/docs/schematics/reducer.md)</small>
 
@@ -72,13 +65,13 @@ Generate a `books` reducer file that contains a state interface,
 an initial state object for the reducer, and a reducer function.
 
 ```sh
-ng generate @ngrx/schematics:reducer Book --group true --reducers reducers/index.ts
+ng generate @ngrx/schematics:reducer Book --group --reducers reducers/index.ts
 ```
 
-We also group the reducer file within a `reducers` folder (`--group true`)
+We also group the reducer file within a `reducers` folder (`--group`)
 and add it to a defined map of reducers (here: the root reducer which was created at the initial store setup).
 
-Please open `book.reducer.ts` and define the following interface `State`.
+__Please open `src/app/reducers/book.reducer.ts`__ and define the following interface `State`.
 
 ```ts
 export interface BooksState {
@@ -92,7 +85,9 @@ const initialState: BooksState = {
 };
 ```
 
-## 6. Create the actions file
+
+
+## 5. Create the actions file
 
 <small>[docs](https://github.com/ngrx/platform/blob/master/docs/schematics/action.md)</small>
 
@@ -100,19 +95,69 @@ Generate a `books` actions file, that contains an enum of action types,
 an example action class and an exported type union of action classes.
 
 ```sh
-ng generate @ngrx/schematics:action Book --group true
+ng generate @ngrx/schematics:action Book --group
 ```
 
-Again we use `--group true` to group the action file within an `actions` folder.
+Again we use `--group` to group the action file within an `actions` folder.
 
 
-
+__Please open `src/app/actions/book.actions.ts`.__
 We already got our first action `BooksActionTypes.LoadBooks`. 
 We should also add:
 
 * `LoadBooksSuccess`
 * `LoadBooksFail`
 
-__--> TODO__
+The full file should look like this:
+
+```ts
+export enum BookActionTypes {
+  LoadBooks =        '[Book] Load Books',
+  LoadBooksSuccess = '[Book] Load Books success',
+  LoadBooksFail =    '[Book] Load Books fail',
+}
+
+export class LoadBooks implements Action {
+  readonly type = BookActionTypes.LoadBooks;
+}
+
+export class LoadBooksSuccess implements Action {
+  readonly type = BookActionTypes.LoadBooksSuccess;
+  constructor(public payload: Book[]) {}
+}
+
+export class LoadBooksFail implements Action {
+  readonly type = BookActionTypes.LoadBooksFail;
+  constructor(public payload: HttpErrorResponse) {}
+}
+
+export type BookActions =
+  | LoadBooks
+  | LoadBooksSuccess
+  | LoadBooksFail;
+```
 
 
+# 6. Dispatching our first action
+
+We can already dispatch the `LoadBooks` action.
+A good place for this 
+
+
+
+# 6. Finalize the reducers file
+
+It's time to wire the things togehter.
+Please open `book.reducer.ts` again so that we can handle 
+
+## X. Create the effects file
+
+<small>[docs](https://github.com/ngrx/platform/blob/master/docs/schematics/effect.md)</small>
+
+Generate a file for the effects and register it within the `app.module.ts`
+
+```sh
+ng generate @ngrx/schematics:effect Book --group --root --module app.module.ts
+```
+
+THe 
