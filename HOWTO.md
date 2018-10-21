@@ -192,7 +192,7 @@ import { State as BookState } from '../reducers/book.reducer';
 export const getBooksState = createFeatureSelector<BookState>('books');
 ```
 
-We have to interfaces with the name `State` in the project.
+We have two interfaces with the name `State` in the project.
 To make things clear, we call the feature state `BookState` instead of simply `State`.
 
 Please write down the required selectors:
