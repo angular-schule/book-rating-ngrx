@@ -71,20 +71,19 @@ ng generate @ngrx/schematics:effect App --root --module app.module.ts
 Generate a `books` reducer file that contains a state interface,
 an initial state object for the reducer, and a reducer function.
 
-We also group the reducer file within a reducers folder (`--group true`)
-and add it to a defined map of reducers (here: the root reducer).
-
-
 ```sh
 ng generate @ngrx/schematics:reducer Book --group true --reducers reducers/index.ts
 ```
 
-Please open `book.reducer.ts` and define the interface `State`.
+We also group the reducer file within a `reducers` folder (`--group true`)
+and add it to a defined map of reducers (here: the root reducer which was created at the initial store setup).
+
+Please open `book.reducer.ts` and define the following interface `State`.
 
 ```ts
 export interface BooksState {
-  books: Book[];
-  loading: boolean;
+  books: Book[];     // a list of books that is going to be loaded via HTTP
+  loading: boolean;  // an indicator for the waiting time
 }
 
 const initialState: BooksState = {
@@ -97,13 +96,16 @@ const initialState: BooksState = {
 
 <small>[docs](https://github.com/ngrx/platform/blob/master/docs/schematics/action.md)</small>
 
-
 Generate a `books` actions file, that contains an enum of action types,
 an example action class and an exported type union of action classes.
 
 ```sh
-ng generate @ngrx/schematics:action Book
+ng generate @ngrx/schematics:action Book --group true
 ```
+
+Again we use `--group true` to group the action file within an `actions` folder.
+
+
 
 We already got our first action `BooksActionTypes.LoadBooks`. 
 We should also add:
