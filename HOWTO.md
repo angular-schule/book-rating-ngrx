@@ -138,17 +138,76 @@ export type BookActions =
 ```
 
 
+
 # 6. Dispatching our first action
 
 We can already dispatch the `LoadBooks` action.
-A good place for this 
+A good place for this is the file `src/app/dashboard.component.ts`.
+
+First, you have to inject the store into the constructor:
+
+```ts
+import { Store } from '@ngrx/store';
+import { State } from '../reducers';
+
+// ...
+constructor(private store: Store<State>)
+```
+
+Now add this line of code to the `ngOnInit` method:
+
+```ts
+this.store.dispatch(new LoadBooks());
+```
+
+Well, not much happened here.
+It's time to wire the things togehter via the reducers.
 
 
 
-# 6. Finalize the reducers file
+# 6. Handling `LoadBooks` in the reducers file
 
-It's time to wire the things togehter.
-Please open `book.reducer.ts` again so that we can handle 
+Please open `book.reducer.ts` again so that we can handle our first action.
+
+We need this extra switch-case:
+
+```ts
+case BooksActionTypes.LoadBooks: {
+  return { ...state, loading: true }; // returns a new state
+}
+```
+
+
+
+# 7. Create the selectors file 
+
+Unfortunately there is no schematic for creating selectors yet.
+So we have to manually create the folder `src/app/selectors` and add a file with the name `book.selectors.ts` inside.
+
+Such a file should always define a "feature selector" like this:
+
+```ts
+import { State as BookState } from '../reducers/book.reducer';
+
+export const getBooksState = createFeatureSelector<BookState>('books');
+```
+
+We have to interfaces with the name `State` in the project.
+To make things clear, we call the feature state `BookState` instead of simply `State`.
+
+Please write down the required selectors:
+
+```ts
+export const getBooksLoading = createSelector(
+  getBooksState,
+  state => state.loading
+);
+
+export const getAllBooks = createSelector(
+  getBooksState,
+  state => state.books
+);
+```
 
 ## X. Create the effects file
 
