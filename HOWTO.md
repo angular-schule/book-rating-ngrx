@@ -71,13 +71,27 @@ ng generate @ngrx/schematics:effect App --root --module app.module.ts
 Generate a `books` reducer file that contains a state interface,
 an initial state object for the reducer, and a reducer function.
 
+We also group the reducer file within a reducers folder (`--group true`)
+and add it to a defined map of reducers (here: the root reducer).
+
+
 ```sh
-ng generate @ngrx/schematics:reducer Book
+ng generate @ngrx/schematics:reducer Book --group true --reducers reducers/index.ts
 ```
 
-Please open `book.reducer.ts` and add define the interface `State`.
+Please open `book.reducer.ts` and define the interface `State`.
 
-__--> TODO__
+```ts
+export interface BooksState {
+  books: Book[];
+  loading: boolean;
+}
+
+const initialState: BooksState = {
+  books: [],
+  loading: false
+};
+```
 
 ## 6. Create the actions file
 
