@@ -3,9 +3,10 @@ import { Observable } from 'rxjs';
 
 import { Book } from '../shared/book';
 import { BookStoreService } from '../shared/book-store.service';
-import { Store } from '@ngrx/store';
+import { Store, select } from '@ngrx/store';
 import { State } from '../reducers';
 import { LoadBooks } from '../actions/book.actions';
+import { getBooksLoading } from '../selectors/book.selectors';
 
 @Component({
   selector: 'br-dashboard',
@@ -20,6 +21,7 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() {
     this.books$ = this.bookStore.getAll();
+    this.loading$ = this.store.pipe(select(getBooksLoading));
 
     this.store.dispatch(new LoadBooks());
   }

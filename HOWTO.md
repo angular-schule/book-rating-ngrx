@@ -91,7 +91,7 @@ const initialState: BooksState = {
 
 <small>[docs](https://github.com/ngrx/platform/blob/master/docs/schematics/action.md)</small>
 
-Generate a `books` actions file, that contains an enum of action types,
+Generate a `books` actions file, that contains an enumeration of action types,
 an example action class and an exported type union of action classes.
 
 ```sh
@@ -150,7 +150,8 @@ First, you have to inject the store into the constructor:
 import { Store } from '@ngrx/store';
 import { State } from '../reducers';
 
-// ...
+// [...]
+
 constructor(private store: Store<State>)
 ```
 
@@ -161,23 +162,42 @@ this.store.dispatch(new LoadBooks());
 ```
 
 Well, not much happened here.
-It's time to wire the things togehter via the reducers.
+It's time to wire the things together via reducers.
 
 
 
-# 6. Handling `LoadBooks` in the reducers file
+# 6. Handling `LoadBooks` and `LoadBooksSuccess` in the reducers file
 
-Please open `book.reducer.ts` again so that we can handle our first action.
+__Please open `book.reducer.ts` again__ so that we can handle our first action.
 
-We need this extra switch-case:
+We need this extra switch-case, which activates the loading indicator whenever we are starting to retrieve the books:
 
 ```ts
-case BooksActionTypes.LoadBooks: {
+case BookActionTypes.LoadBooks: {
   return { ...state, loading: true }; // returns a new state
 }
 ```
 
+We can also plan the next reducer.
+As soon as we have those books, we need to store them in the array of books:
 
+```ts
+case BookActionTypes.LoadBooksSuccess: {
+  const books = action.payload;
+
+  return { ...state, books, loading: false };
+}
+```
+
+This won't work immediately, action.payload As you see, the type of the parameter `action: Action` is not specific enough. Please change the signature of the reducer-function:
+
+```ts
+// BEFORE
+export function reducer(state = initialState, action: Action): State {
+
+// AFTER
+export function reducer(state = initialState, action: BookActions): State {
+```
 
 # 7. Create the selectors file 
 
@@ -189,7 +209,7 @@ Such a file should always define a "feature selector" like this:
 ```ts
 import { State as BookState } from '../reducers/book.reducer';
 
-export const getBooksState = createFeatureSelector<BookState>('books');
+export const getBooksState = createFeatureSelector<BookState>('book');
 ```
 
 We have two interfaces with the name `State` in the project.
@@ -209,11 +229,38 @@ export const getAllBooks = createSelector(
 );
 ```
 
-## X. Create the effects file
+
+# 8. Select the Loading-State in the Dashboard
+
+Since we have a selector, we can use it to create an Observable that fires whenever `book.loading` changes.
+
+
+__Please open `dashboard.component.ts` again__ and add the following statement to `ngOnInit()`:
+
+```ts
+import { Store, select } from '@ngrx/store';
+
+// [...]
+
+this.loading$ = this.store.pipe(select(getBooksLoading));
+```
+
+<!--
+It might happen that your internet connection is too fast the see the loading-indicator.
+You might want to go to `src/app/shared/book-store.service.ts` and 
+request the resource `/booksSlow` instead of `/books`.
+The new resource also returns all books, but with a delay of 5 seconds.
+-->
+
+
+## 9. Create the effects file 
 
 <small>[docs](https://github.com/ngrx/platform/blob/master/docs/schematics/effect.md)</small>
 
-Generate a file for the effects and register it within the `app.module.ts`
+The loading indicator never disappears because no books are loaded via HTTP.
+It's time to create a side-effect to retrieve the Books from our API.
+
+Generate a file for the effects and register it within the `app.module.ts`:
 
 ```sh
 ng generate @ngrx/schematics:effect Book --group --root --module app.module.ts
