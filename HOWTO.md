@@ -232,7 +232,7 @@ export const getAllBooks = createSelector(
 
 # 8. Select the Loading-State in the Dashboard
 
-Since we have a selector, we can use it to create an Observable that fires whenever `book.loading` changes.
+Since we have a selector, we can use it to create an `Observable` that fires whenever `book.loading` changes.
 
 
 __Please open `dashboard.component.ts` again__ and add the following statement to `ngOnInit()`:
@@ -245,12 +245,6 @@ import { Store, select } from '@ngrx/store';
 this.loading$ = this.store.pipe(select(getBooksLoading));
 ```
 
-<!--
-It might happen that your internet connection is too fast the see the loading-indicator.
-You might want to go to `src/app/shared/book-store.service.ts` and 
-request the resource `/booksSlow` instead of `/books`.
-The new resource also returns all books, but with a delay of 5 seconds.
--->
 
 
 ## 9. Create the effects file 
@@ -266,4 +260,45 @@ Generate a file for the effects and register it within the `app.module.ts`:
 ng generate @ngrx/schematics:effect Book --group --root --module app.module.ts
 ```
 
-THe 
+This creates an empty class for our effects.
+The class is also already correctly registered in `app.module.ts`.
+
+__Please open `src/app/effects/book.effects.ts` to enhance that file.
+
+First, add a new dependency to the  constructor:
+
+```ts
+// BEFORE
+constructor(private actions$: Actions) {}
+
+// AFTER
+constructor(private actions$: Actions, private bookStore: BookStoreService) {}
+```
+
+We can now utilize RxJS to actually load the books via the following URL:
+
+  * https://api.angular.schule/books  
+
+```ts
+@Effect()
+loadBooks$ = this.actions$.pipe(
+  ofType(BookActionTypes.LoadBooks),
+  switchMap(() => this.bookStore.getAll()),
+  map(books => new LoadBooksSuccess(books))
+);
+```
+
+We decided for the operator `switchMap()` in lieu for `mergeMap()`,
+because it is a bit more reliable when working with asynchronous operations.
+If `LoadBooks` would be called more than once in a short time
+(this is actually not happening with our code) than `switchMap()` would make sure,
+that always the last HTTP-result is be used.
+
+> As a rule of thumb, if you are unsure what to choose,
+please prefer `concatMap()` or `switchMap()` over `mergeMap()`.
+
+__Hint:__
+It might happen that your internet connection is too fast the see the loading-indicator now.
+You might want to go to `src/app/shared/book-store.service.ts` and 
+request the resource `/booksSlow` instead of `/books`.
+The new resource returns all books as well, but with a delay of 5 seconds.
