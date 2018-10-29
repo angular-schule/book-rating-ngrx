@@ -5,6 +5,10 @@ import { ActivatedRoute } from '@angular/router';
 
 import { Book } from '../shared/book';
 import { BookStoreService } from '../shared/book-store.service';
+import { State } from '../reducers';
+import { Store, select } from '@ngrx/store';
+import { LoadSingleBook } from '../actions/book.actions';
+import { getSelectedBook } from '../reducers/book.selectors';
 
 @Component({
   selector: 'br-book-details',
@@ -12,14 +16,13 @@ import { BookStoreService } from '../shared/book-store.service';
 })
 export class BookDetailsComponent implements OnInit {
 
-  book$: Observable<Book>;
+  book$ = this.store.pipe(select(getSelectedBook));
 
-  constructor(private route: ActivatedRoute, private bs: BookStoreService) { }
+  constructor(private route: ActivatedRoute, private bs: BookStoreService, private store: Store<State>) { }
 
   ngOnInit() {
-    this.book$ = this.route.paramMap.pipe(
-      map(params => params.get('isbn')),
-      switchMap(isbn => this.bs.getSingle(isbn))
-    );
+    this.route.paramMap.pipe(
+      map(params => params.get('isbn'))
+    ).subscribe(isbn => this.store.dispatch(new LoadSingleBook(isbn)));
   }
 }

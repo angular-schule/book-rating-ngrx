@@ -1,3 +1,9 @@
+<div class="alert alert-danger" *ngIf="error$ | async as error">
+  <h2>ERROR</h2>
+  {{ error.message }}
+</div>
+
+
 <div class="progress mb-4 mt-5" *ngIf="loading$ | async">
   <div class="progress-bar progress-bar-striped progress-bar-animated" style="width: 100%">
     Loading books...
