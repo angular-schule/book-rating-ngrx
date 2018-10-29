@@ -20,6 +20,11 @@ export class BookStoreService {
     );
   }
 
+  // this is for demonstration purposes to trigger an HTTP error
+  getAllBroken(): Observable<Book[]> {
+    return this.http.get<any[]>(`${this.api}/BOOKSINVALID`);
+  }
+
   getSingle(isbn: string): Observable<Book> {
     return this.http.get<any>(`${this.api}/books/${isbn}`).pipe(
       map(book => this.responseToBook(book))
