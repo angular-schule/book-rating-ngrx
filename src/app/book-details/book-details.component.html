@@ -1,8 +1,6 @@
 <div *ngIf="book$ | async as book" style="margin-top: 80px">
 
-  <h3>
-    {{ book.title }}
-  </h3>
+  <h3>{{ book.title }}</h3>
 
   <p>
     <strong>ISBN:</strong> {{ book.isbn }}
@@ -18,7 +16,7 @@
   </p>
 
   <hr>
-  <button class="btn btn-success" routerLink="/">Back to Dashboard</button>
+  <a class="btn btn-success" routerLink="/dashboard">Back to Dashboard</a>
 
 </div>
 

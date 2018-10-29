@@ -2,7 +2,7 @@
   <div class="card-body bg-light">
 
     <img class="img-thumbnail float-right"
-         src="{{ book.thumbnail }}" width="150">
+         [src]="book.thumbnail" width="150">
 
     <div class="card-title">
       <h2>
@@ -18,14 +18,14 @@
     </p>
 
     <button
-      [disabled]="book.rating < 2"
+      [disabled]="rateDownDisabled"
       (click)="doRateDown()"
-      class="mr-2 btn btn-danger">👎</button>
+      class="mr-2 btn btn-danger">+</button>
 
     <button
-      [disabled]="book.rating > 4"
+      [disabled]="rateUpDisabled"
       (click)="doRateUp()"
-      class="btn btn-success mr-2">👍</button>
+      class="btn btn-success mr-2">–</button>
 
     <a [routerLink]="['/book', book.isbn]" class="btn btn-secondary">Details</a>
 

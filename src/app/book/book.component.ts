@@ -4,10 +4,11 @@ import { Book } from '../shared/book';
 
 @Component({
   selector: 'br-book',
-  templateUrl: './book.component.html',
-  styleUrls: ['./book.component.scss']
+  templateUrl: './book.component.html'
 })
 export class BookComponent {
+  private minRating = 1;
+  private maxRating = 5;
 
   @Input() book: Book;
 
@@ -20,5 +21,13 @@ export class BookComponent {
 
   doRateDown() {
     this.rateDown.emit(this.book);
+  }
+
+  get rateUpDisabled() {
+    return this.book.rating >= this.maxRating;
+  }
+
+  get rateDownDisabled() {
+    return this.book.rating <= this.minRating;
   }
 }

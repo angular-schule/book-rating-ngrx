@@ -19,12 +19,9 @@ import { BookStoreService } from './shared/book-store.service';
   ],
   imports: [
     BrowserModule,
-    ReactiveFormsModule,
     HttpClientModule,
+    ReactiveFormsModule,
     AppRoutingModule
-  ],
-  providers: [
-    BookStoreService
   ],
   bootstrap: [AppComponent]
 })

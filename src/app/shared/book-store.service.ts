@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 import { Book } from './book';
-import { delay, map } from 'rxjs/operators';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class BookStoreService {
 
   private api = 'https://api.angular.schule';
@@ -14,27 +15,27 @@ export class BookStoreService {
   constructor(private http: HttpClient) { }
 
   getAll(): Observable<Book[]> {
-    return this.http.get<Book[]>(`${this.api}/books`).pipe(
+    return this.http.get<any[]>(`${this.api}/books`).pipe(
       map(books => books.map(book => this.responseToBook(book)))
     );
   }
 
   getSingle(isbn: string): Observable<Book> {
-    return this.http.get<Book>(`${this.api}/book/${isbn}`).pipe(
+    return this.http.get<any>(`${this.api}/books/${isbn}`).pipe(
       map(book => this.responseToBook(book))
     );
   }
 
-  add(book: Book): Observable<any> {
+  create(book: Book): Observable<any> {
     const newBook = {
       title: book.title,
       description: book.description,
-      thumbnails: [{ url: book.thumbnail, title: 'Image' }],
+      thumbnails: [{ url: book.thumbnail, title: 'Cover Image' }],
       isbn: book.isbn,
       rating: book.rating
     };
 
-    return this.http.post(`${this.api}/book`, newBook, { responseType: 'text' });
+    return this.http.post(`${this.api}/books`, newBook, { responseType: 'text' });
   }
 
 

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { of } from 'rxjs';
 
 import { Book } from '../shared/book';
 import { BookStoreService } from '../shared/book-store.service';
@@ -10,13 +10,12 @@ import { BookStoreService } from '../shared/book-store.service';
 })
 export class DashboardComponent implements OnInit {
 
-  books$: Observable<Book[]>;
-  loading$: Observable<boolean>;
+  books$ = this.service.getAll();
+  loading$ = of(false); // TODO: Implement logic
 
-  constructor(private bookStore: BookStoreService) { }
+  constructor(private service: BookStoreService) { }
 
   ngOnInit() {
-    this.books$ = this.bookStore.getAll();
   }
 
   doRateUp(book: Book) {
