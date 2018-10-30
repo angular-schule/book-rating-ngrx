@@ -19,8 +19,14 @@ export class DashboardComponent implements OnInit {
   }
 
   doRateUp(book: Book) {
+    const rating = Math.min(5, book.rating + 1);
+    this.service.setRating(book.isbn, rating)
+      .subscribe(e => console.log(e));
   }
 
   doRateDown(book: Book) {
+    const rating = Math.max(1, book.rating - 1);
+    this.service.setRating(book.isbn, rating)
+      .subscribe(e => console.log(e));
   }
 }

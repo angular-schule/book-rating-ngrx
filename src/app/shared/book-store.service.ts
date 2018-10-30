@@ -43,6 +43,9 @@ export class BookStoreService {
     return this.http.post(`${this.api}/books`, newBook, { responseType: 'text' });
   }
 
+  setRating(isbn: string, rating: number): Observable<any> {
+    return this.http.post(`${this.api}/books/${isbn}/rate`, { rating }, { responseType: 'text' });
+  }
 
   private responseToBook(res: any): Book {
     return {
