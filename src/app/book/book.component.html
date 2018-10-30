@@ -20,12 +20,12 @@
     <button
       [disabled]="rateDownDisabled"
       (click)="doRateDown()"
-      class="mr-2 btn btn-danger">+</button>
+      class="mr-2 btn btn-danger">-</button>
 
     <button
       [disabled]="rateUpDisabled"
       (click)="doRateUp()"
-      class="btn btn-success mr-2">–</button>
+      class="btn btn-success mr-2">+</button>
 
     <a [routerLink]="['/book', book.isbn]" class="btn btn-secondary">Details</a>
 
