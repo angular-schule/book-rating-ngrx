@@ -10,8 +10,8 @@ import { BookStoreService } from '../shared/book-store.service';
 })
 export class DashboardComponent implements OnInit {
 
-  books$ = this.service.getAll();
   loading$ = of(false); // TODO: Implement logic
+  books$ = this.service.getAll();
 
   constructor(private service: BookStoreService) { }
 
