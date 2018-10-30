@@ -16,8 +16,8 @@ import { BookStoreService } from '../shared/book-store.service';
 })
 export class DashboardComponent implements OnInit {
 
-  books$ = this.store.pipe(select(getAllBooks));
   loading$ = this.store.pipe(select(getBooksLoading));
+  books$ = this.store.pipe(select(getAllBooks));
   error$ = this.store.pipe(select(getBooksError));
 
   constructor(private store: Store<State>, private bs: BookStoreService) { }
