@@ -5,15 +5,22 @@
          [src]="book.thumbnail" width="150">
 
     <div class="card-title">
-      <h2>
-        {{ book.title }}
+      <h3>
         <span class="badge badge-secondary">
           {{ book.rating }}
         </span>
-      </h2>
+        {{ book.title }}
+      </h3>
 
     </div>
-    <p>
+
+    <p class="text-muted">
+      <span *ngFor="let a of book.authors; last as l">
+        {{ a }}<ng-container *ngIf="!l">, </ng-container>
+      </span>
+    </p>
+
+    <p class="small">
       {{ book.description }}
     </p>
 

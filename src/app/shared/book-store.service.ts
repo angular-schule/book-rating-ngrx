@@ -36,6 +36,7 @@ export class BookStoreService {
       title: book.title,
       description: book.description,
       thumbnails: [{ url: book.thumbnail, title: 'Cover Image' }],
+      authors: book.authors,
       isbn: book.isbn,
       rating: book.rating
     };
@@ -54,7 +55,8 @@ export class BookStoreService {
       title: res.title,
       description: res.description,
       rating: res.rating,
-      thumbnail: res.thumbnails && res.thumbnails[0].url
+      thumbnail: res.thumbnails && res.thumbnails[0].url,
+      authors: res.authors
     };
   }
 }
